@@ -4,6 +4,7 @@ I used to GDQuest Tutorial and project assets from https://www.youtube.com/watch
 
 
 8/23 - Reorganized project folders - 10 minutes
+
 8/23 - Switched player to animated cat - 1 hour - Followed tutorial: https://docs.godotengine.org/en/4.4/tutorials/2d/2d_sprite_animation.html
 
 
