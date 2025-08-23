@@ -12,5 +12,6 @@ I used to GDQuest Tutorial and project assets from https://www.youtube.com/watch
 8/23 - Added quick audio to game when character takes damage or dies from https://dillonbecker.itch.io/sdap - 15 Minutes
  - New bug introduced: To play death sound, game doesn't pause at end
 
-Assets -From : Sprout Lands -By : Cup Nooble - https://cupnooble.itch.io/
-Super Dialogue Audio Pack by Dillon Becker. This work is licensed under CC BY 4.0 https://dillonbecker.itch.io
+Assets -From : 
+- Sprout Lands -By : Cup Nooble - https://cupnooble.itch.io/
+- Super Dialogue Audio Pack by Dillon Becker. This work is licensed under CC BY 4.0 https://dillonbecker.itch.io
