@@ -15,7 +15,16 @@ func _physics_process(delta: float):
 	var overlapping_mobs = %HurtBox.get_overlapping_bodies()
 	const DAMAGE_RATE = 50.0
 	health -= overlapping_mobs.size() * DAMAGE_RATE * delta
+	
+	if overlapping_mobs.size() > 0:
+		%AnimationPlayer.play("hit_flash")
+		if not %AudioHitSound.playing:
+			%AudioHitSound.play()
+
+
 	%HealthBar.value = health
 	if health <= 0.0:
+		if not %AudioDeathSound.playing:
+			%AudioDeathSound.play()
 		health_depleted.emit()
 	

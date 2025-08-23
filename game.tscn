@@ -80,4 +80,5 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 128
 text = "GAME OVER :-("
 
+[connection signal="health_depleted" from="CatPlayer" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="Timer" to="." method="spawn_mob"]
