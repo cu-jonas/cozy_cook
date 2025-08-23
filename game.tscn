@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://sixfqsom77do"]
 
-[ext_resource type="PackedScene" uid="uid://b480fv0x1acjw" path="res://characters/player/player.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://dmnpsxvjpg7lh" path="res://game.gd" id="1_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://0rgoslwspiir" path="res://trees/tree.tscn" id="2_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://xwqhwh8tyog6" path="res://characters/player_cat/player_cat.tscn" id="2_fc0e3"]
 
 [sub_resource type="Curve2D" id="Curve2D_7jktm"]
 _data = {
@@ -24,14 +24,14 @@ offset_right = 1909.0
 offset_bottom = 1082.0
 color = Color(0.314266, 0.473985, 0.171756, 1)
 
-[node name="Player" parent="." instance=ExtResource("1_80nbo")]
-position = Vector2(1003, 483)
+[node name="CatPlayer" parent="." instance=ExtResource("2_fc0e3")]
+unique_name_in_owner = true
+position = Vector2(938, 566)
 
-[node name="Path2D" type="Path2D" parent="Player"]
-position = Vector2(-1003, -483)
+[node name="Path2D" type="Path2D" parent="CatPlayer"]
 curve = SubResource("Curve2D_7jktm")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+[node name="PathFollow2D" type="PathFollow2D" parent="CatPlayer/Path2D"]
 unique_name_in_owner = true
 position = Vector2(-90, -170)
 rotation = -0.00751512
@@ -80,5 +80,4 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 128
 text = "GAME OVER :-("
 
-[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="Timer" to="." method="spawn_mob"]

@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://xwqhwh8tyog6"]
+
+[ext_resource type="Script" uid="uid://cayi4d37mhgto" path="res://characters/player/player.gd" id="1_mk5fp"]
+[ext_resource type="SpriteFrames" uid="uid://tg5lu6a4yqcp" path="res://characters/player_cat/cat_frames.tres" id="3_ht42k"]
+[ext_resource type="PackedScene" uid="uid://dib33o0j2vmc5" path="res://pistol/weapon.tscn" id="3_m4gtg"]
+[ext_resource type="Script" uid="uid://dlf5vi7esjhw1" path="res://characters/player_cat/animated_cat.gd" id="4_sjkqh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
+radius = 33.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
+radius = 34.0147
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3pqv"]
+bg_color = Color(0.152941, 0.168627, 0.188235, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqtel"]
+bg_color = Color(0.623529, 0.866667, 0.317647, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_mk5fp")
+
+[node name="AnimatedCat" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -28.34)
+scale = Vector2(4, 4)
+sprite_frames = ExtResource("3_ht42k")
+animation = &"running_right"
+frame_progress = 0.0269935
+script = ExtResource("4_sjkqh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("CircleShape2D_onrkg")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Weapon" parent="." instance=ExtResource("3_m4gtg")]
+position = Vector2(0, -31)
+
+[node name="HurtBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -30)
+shape = SubResource("CircleShape2D_i3pqv")
+debug_color = Color(0.790415, 0.0759102, 3.85046e-07, 0.419608)
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -64.0
+offset_top = -138.0
+offset_right = 64.0
+offset_bottom = -111.0
+theme_override_styles/background = SubResource("StyleBoxFlat_i3pqv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hqtel")
+value = 100.0
+show_percentage = false
