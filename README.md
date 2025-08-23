@@ -1,6 +1,6 @@
 This is Cozy Cook! A game I started to learn GoDot and as an example for teaching ATLS 4150/5150.
 
-I used to GDQuest Tutorial and project assets from https://www.youtube.com/watch?v=GwCiGixlqiU which took me about 3 hours to complete.
+I started by used to GDQuest Tutorial and project assets from https://www.youtube.com/watch?v=GwCiGixlqiU which took me about 3 hours to complete.
 
 
 8/23 - Reorganized project folders - 10 minutes
@@ -13,5 +13,6 @@ I used to GDQuest Tutorial and project assets from https://www.youtube.com/watch
  - New bug introduced: To play death sound, game doesn't pause at end
 
 Assets -From : 
+- GDQuest Tutorial - https://www.gdquest.com/library/first_2d_game_godot4_vampire_survivor/
 - Sprout Lands -By : Cup Nooble - https://cupnooble.itch.io/
 - Super Dialogue Audio Pack by Dillon Becker. This work is licensed under CC BY 4.0 https://dillonbecker.itch.io
