@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfgmchppptbbp"]
+[gd_scene load_steps=10 format=3 uid="uid://bfgmchppptbbp"]
 
 [ext_resource type="Script" uid="uid://bgt1m3nbvryay" path="res://characters/glyphy/glyphy.gd" id="1_l8hny"]
 [ext_resource type="FontFile" uid="uid://bmfccjxytgkd6" path="res://characters/glyphy/sixtyfour.ttf" id="1_tm2w0"]
+[ext_resource type="Texture2D" uid="uid://b7rhtttevhxtj" path="res://characters/ground_shadow.png" id="2_rl4ef"]
 
 [sub_resource type="Animation" id="Animation_l8hny"]
 length = 0.001
@@ -127,7 +128,7 @@ tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"transitions": PackedFloat32Array(1, 1, -0.5),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
 }
@@ -154,6 +155,14 @@ theme_override_font_sizes/font_size = 100
 text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Label"]
+modulate = Color(0.135012, 0.135012, 0.135012, 0.501961)
+show_behind_parent = true
+position = Vector2(52.4506, 88.9097)
+rotation = 0.0872665
+scale = Vector2(1.36, 0.56)
+texture = ExtResource("2_rl4ef")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Label"]
 unique_name_in_owner = true

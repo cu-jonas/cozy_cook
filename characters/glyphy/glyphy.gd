@@ -1,7 +1,7 @@
 extends Node2D
 
 func _ready() -> void:
-	%Label.text = char(randi_range(65, 91))  # ASCII codes 65-90 inclusive
+	%Label.text = char(randi_range(65, 90))  # ASCII codes 65-90 inclusive
 
 func play_walk():
 	%AnimationPlayer.play("wobble_walk")
