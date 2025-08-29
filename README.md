@@ -11,12 +11,16 @@ This is Cozy Cook! A game I started to learn GoDot and as an example for teachin
 8/23 - Added quick audio to game when character takes damage or dies from https://dillonbecker.itch.io/sdap - 15 Minutes
  - New bug introduced: To play death sound, game doesn't pause at end
 
- 8/24 - Added Demo folder with video recording of initial work
+8/24 - Added Demo folder with video recording of initial work
 
- 8/28 - Turned the enemy characters into a random glyphy character using the sixtyfour font and added some animations - 1 hour
+8/28 - Turned the enemy characters into a random glyphy character using the sixtyfour font and added some animations - 1 hour
+
+8/29 - Added simple audio manager and music
+
 
 Assets -From : 
 - GDQuest Tutorial - https://www.gdquest.com/library/first_2d_game_godot4_vampire_survivor/
 - Sprout Lands -By : Cup Nooble - https://cupnooble.itch.io/
 - Super Dialogue Audio Pack by Dillon Becker. This work is licensed under CC BY 4.0 https://dillonbecker.itch.io
 - Sixtyfour font - https://github.com/jenskutilek/homecomputer-fonts
+- Music from https://pizzadoggy.itch.io/cozy-tunes

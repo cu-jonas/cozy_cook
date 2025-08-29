@@ -18,13 +18,11 @@ func _physics_process(delta: float):
 	
 	if overlapping_mobs.size() > 0:
 		%AnimationPlayer.play("hit_flash")
-		if not %AudioHitSound.playing:
-			%AudioHitSound.play()
+		AudioManager.play_sfx("PlayerHurt")
 
 
 	%HealthBar.value = health
 	if health <= 0.0:
-		if not %AudioDeathSound.playing:
-			%AudioDeathSound.play()
+		AudioManager.play_sfx("PlayerDeath")
 		health_depleted.emit()
 	
