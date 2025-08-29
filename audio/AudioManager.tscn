@@ -35,6 +35,10 @@ max_polyphony = 10
 
 [node name="EnemyDie" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("6_cf61m")
+volume_db = -13.867
+max_polyphony = 5
 
 [node name="EnemyHit" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("7_dgn74")
+volume_db = -8.157
+max_polyphony = 5

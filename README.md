@@ -15,7 +15,7 @@ This is Cozy Cook! A game I started to learn GoDot and as an example for teachin
 
 8/28 - Turned the enemy characters into a random glyphy character using the sixtyfour font and added some animations - 1 hour
 
-8/29 - Added simple audio manager and music
+8/29 - Added simple audio manager with music and sound effects - 1 hour
 
 
 Assets -From : 
