@@ -24,3 +24,4 @@ Assets -From :
 - Super Dialogue Audio Pack by Dillon Becker. This work is licensed under CC BY 4.0 https://dillonbecker.itch.io
 - Sixtyfour font - https://github.com/jenskutilek/homecomputer-fonts
 - Music from https://pizzadoggy.itch.io/cozy-tunes
+- More sound effects from JDSherbert: https://jdsherbert.itch.io/ultimate-ui-sfx-pack

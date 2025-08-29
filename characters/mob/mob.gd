@@ -17,6 +17,7 @@ func take_damage():
 	health -= 1
 	
 	%Glyphy.play_hurt()
+	AudioManager.play_sfx("EnemyHit", 0, true)
 	
 	if health == 0:
 		queue_free()
@@ -24,3 +25,4 @@ func take_damage():
 		var smoke = SMOKE_SCENE.instantiate()
 		get_parent().add_child(smoke)
 		smoke.global_position = global_position
+		AudioManager.play_sfx("EnemyDie", 0, true)

@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bm73qywbfjrrx"]
+[gd_scene load_steps=8 format=3 uid="uid://bm73qywbfjrrx"]
 
 [ext_resource type="Script" uid="uid://dwg4gler02usf" path="res://audio/audio_manager.gd" id="1_pwwtb"]
 [ext_resource type="AudioStream" uid="uid://n8ttegf6p2g1" path="res://audio/music/Wanderers Tale.ogg" id="2_ngew5"]
 [ext_resource type="AudioStream" uid="uid://cd1y035s8crbo" path="res://audio/sfx/take_damage.wav" id="3_ecn5r"]
 [ext_resource type="AudioStream" uid="uid://c47s2o2n5jfri" path="res://audio/sfx/death.wav" id="4_hdtnj"]
+[ext_resource type="AudioStream" uid="uid://dxudj78s3547l" path="res://audio/sfx/player_bullet.ogg" id="5_hdtnj"]
+[ext_resource type="AudioStream" uid="uid://ciavsxltb1b8t" path="res://audio/sfx/enemy_die.ogg" id="6_cf61m"]
+[ext_resource type="AudioStream" uid="uid://bavks4mglwek4" path="res://audio/sfx/enemy_hit.ogg" id="7_dgn74"]
 
 [node name="AudioManager" type="Node"]
 process_mode = 3
@@ -14,6 +17,7 @@ unique_name_in_owner = true
 
 [node name="Main" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("2_ngew5")
+parameters/looping = true
 
 [node name="Sfx" type="Node" parent="."]
 unique_name_in_owner = true
@@ -23,3 +27,14 @@ stream = ExtResource("3_ecn5r")
 
 [node name="PlayerDeath" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("4_hdtnj")
+
+[node name="PlayerBullet" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("5_hdtnj")
+volume_db = -20.8
+max_polyphony = 10
+
+[node name="EnemyDie" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("6_cf61m")
+
+[node name="EnemyHit" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("7_dgn74")
