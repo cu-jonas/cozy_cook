@@ -1,0 +1,80 @@
+name: Build - Web
+
+on:
+  push:
+    branches: [main]      # deploy on main
+    tags:     ["v*"]      # …and version tags
+    
+permissions:              # required for deploy-pages
+  contents: read
+  pages: write
+  id-token: write
+
+env:
+  GODOT_VERSION:  "4.4.1-stable"
+  GODOT_BASE_URL: "https://github.com/godotengine/godot/releases/download"
+  WEB_PRESET:     "Web"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # — checkout —
+    - uses: actions/checkout@v4
+      with: {submodules: recursive}
+
+    # — cache godot —
+    - name: Cache Godot
+      id: godot-cache
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/godot
+          ~/.local/share/godot/export_templates
+        key: godot-${{ runner.os }}-${{ env.GODOT_VERSION }}-v5
+
+    # — download editor & templates if cache missed —
+    - name: Install Godot desktop + templates
+      if: steps.godot-cache.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        set -e
+        base="${GODOT_BASE_URL}/${GODOT_VERSION}"
+        echo "⬇️  $base/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+        wget -q $base/Godot_v${GODOT_VERSION}_linux.x86_64.zip -O godot.zip
+        unzip -q godot.zip -d ~/godot
+        chmod +x ~/godot/Godot_v${GODOT_VERSION}_linux.x86_64
+
+        echo "⬇️  $base/Godot_v${GODOT_VERSION}_export_templates.tpz"
+        wget -q $base/Godot_v${GODOT_VERSION}_export_templates.tpz -O templates.tpz
+        mkdir -p /tmp/tpl && unzip -q templates.tpz -d /tmp/tpl
+        for F in /tmp/tpl/templates/*; do
+          mkdir -p ~/.local/share/godot/export_templates/4.4.1.stable
+          cp "$F"   ~/.local/share/godot/export_templates/4.4.1.stable/
+        done
+
+    # — export HTML5 —
+    - name: Export HTML5
+      run: |
+        mkdir -p build/web
+        ~/godot/Godot_v${GODOT_VERSION}_linux.x86_64 --headless \
+          --export-release "${WEB_PRESET}" build/web/index.html
+
+    # — upload artifact for Pages —
+    - uses: actions/upload-pages-artifact@v3
+      with:
+        path: build/web        # this becomes the Pages content
+
+  # ───────────────── deploy job ─────────────────
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4

@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bm73qywbfjrrx"]
+[gd_scene load_steps=8 format=3 uid="uid://qkarf1v8vtjn"]
 
-[ext_resource type="Script" uid="uid://dwg4gler02usf" path="res://audio/audio_manager.gd" id="1_pwwtb"]
+[ext_resource type="Script" path="res://audio/audio_manager.gd" id="1_pwwtb"]
 [ext_resource type="AudioStream" uid="uid://n8ttegf6p2g1" path="res://audio/music/Wanderers Tale.ogg" id="2_ngew5"]
 [ext_resource type="AudioStream" uid="uid://cd1y035s8crbo" path="res://audio/sfx/take_damage.wav" id="3_ecn5r"]
 [ext_resource type="AudioStream" uid="uid://c47s2o2n5jfri" path="res://audio/sfx/death.wav" id="4_hdtnj"]
