@@ -17,6 +17,8 @@ This is Cozy Cook! A game I started to learn GoDot and as an example for teachin
 
 8/29 - Added simple audio manager with music and sound effects - 1 hour
 
+8/30 - Added web build with CI deployment to GitHub pages (I put up a How-To here: https://www.notion.so/Example-Godot-CI-25fb61489a57801a8656caae4e2bf09c?source=copy_link ) - 30 minutes
+
 
 Assets -From : 
 - GDQuest Tutorial - https://www.gdquest.com/library/first_2d_game_godot4_vampire_survivor/
