@@ -4,8 +4,8 @@ var health = 100.0
 var xp = 0
 var level = 1
 var xp_requirements: Array = [
-	3,5,10,15,25
-]a
+	3,5,10,15
+]
 
 var weapon_speed: Array = [
 	.5, .4, .3, .2, .1, .05
