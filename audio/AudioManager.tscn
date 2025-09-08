@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://qkarf1v8vtjn"]
+[gd_scene load_steps=10 format=3 uid="uid://qkarf1v8vtjn"]
 
-[ext_resource type="Script" path="res://audio/audio_manager.gd" id="1_pwwtb"]
+[ext_resource type="Script" uid="uid://dwg4gler02usf" path="res://audio/audio_manager.gd" id="1_pwwtb"]
 [ext_resource type="AudioStream" uid="uid://n8ttegf6p2g1" path="res://audio/music/Wanderers Tale.ogg" id="2_ngew5"]
 [ext_resource type="AudioStream" uid="uid://cd1y035s8crbo" path="res://audio/sfx/take_damage.wav" id="3_ecn5r"]
 [ext_resource type="AudioStream" uid="uid://c47s2o2n5jfri" path="res://audio/sfx/death.wav" id="4_hdtnj"]
 [ext_resource type="AudioStream" uid="uid://dxudj78s3547l" path="res://audio/sfx/player_bullet.ogg" id="5_hdtnj"]
+[ext_resource type="AudioStream" uid="uid://c081ewj0c7d40" path="res://audio/sfx/level_up.wav" id="5_jewxp"]
 [ext_resource type="AudioStream" uid="uid://ciavsxltb1b8t" path="res://audio/sfx/enemy_die.ogg" id="6_cf61m"]
 [ext_resource type="AudioStream" uid="uid://bavks4mglwek4" path="res://audio/sfx/enemy_hit.ogg" id="7_dgn74"]
 [ext_resource type="AudioStream" uid="uid://cbns8cjpvs68i" path="res://audio/sfx/collect_xp.ogg" id="8_cebw5"]
@@ -28,6 +29,9 @@ stream = ExtResource("3_ecn5r")
 
 [node name="PlayerDeath" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("4_hdtnj")
+
+[node name="PlayerLevelUp" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("5_jewxp")
 
 [node name="PlayerBullet" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("5_hdtnj")

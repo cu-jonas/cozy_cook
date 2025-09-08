@@ -17,5 +17,8 @@ func shoot():
 	AudioManager.play_sfx("PlayerBullet", 0, true)
 
 
+func set_weapon_cooldown(speed: int):
+	%Timer.wait_time = speed
+
 func _on_timer_timeout():
 	shoot()

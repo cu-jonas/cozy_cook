@@ -88,6 +88,7 @@ shape = SubResource("CircleShape2D_onrkg")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Weapon" parent="." instance=ExtResource("3_m4gtg")]
+unique_name_in_owner = true
 position = Vector2(0, -31)
 
 [node name="HurtBox" type="Area2D" parent="."]
@@ -127,3 +128,5 @@ stream = ExtResource("5_sjkqh")
 [node name="AudioDeathSound" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("6_idf8u")
+
+[connection signal="level_up" from="." to="." method="_on_level_up"]
