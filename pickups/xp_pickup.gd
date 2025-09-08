@@ -8,3 +8,6 @@ func _on_body_entered(body: Node2D) -> void:
 		AudioManager.play_xp_sfx()
 		body.collect_xp(1)
 		queue_free() # remove the xp node
+
+func _on_expiration_timeout() -> void:
+	queue_free() 
