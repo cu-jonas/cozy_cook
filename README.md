@@ -19,6 +19,14 @@ This is Cozy Cook! A game I started to learn GoDot and as an example for teachin
 
 8/30 - Added web build with CI deployment to GitHub pages (I put up a How-To here: https://www.notion.so/Example-Godot-CI-25fb61489a57801a8656caae4e2bf09c?source=copy_link ) - 30 minutes
 
+9/8 - Added XP drops from enemies and let player pick them up to earn xp - 30 minutes
+
+9/8 - Added player leveling up from XP pickups that increases size and speed - 30 minutes
+
+9/8 - Added XP Progress bar to HUD and fixed some bugs - 15 Minutes
+
+9/8 - Test readme change
+
 
 Assets -From : 
 - GDQuest Tutorial - https://www.gdquest.com/library/first_2d_game_godot4_vampire_survivor/
@@ -27,3 +35,4 @@ Assets -From :
 - Sixtyfour font - https://github.com/jenskutilek/homecomputer-fonts
 - Music from https://pizzadoggy.itch.io/cozy-tunes
 - More sound effects from JDSherbert: https://jdsherbert.itch.io/ultimate-ui-sfx-pack
+- Magical icons from https://raventale.itch.io/daily-doodles-pixelart-asset-pack

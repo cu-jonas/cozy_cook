@@ -26,3 +26,8 @@ func take_damage():
 		get_parent().add_child(smoke)
 		smoke.global_position = global_position
 		AudioManager.play_sfx("EnemyDie", 0, true)
+
+		const XP_CRYSTAL = preload("res://pickups/xp_pickup.tscn")
+		var xp = XP_CRYSTAL.instantiate()
+		get_parent().add_child(xp)
+		xp.global_position = global_position
