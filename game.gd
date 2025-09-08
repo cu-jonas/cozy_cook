@@ -17,7 +17,8 @@ func spawn_mob():
 func _on_player_health_depleted() -> void:
 	game_over.emit()
 
-
 func _on_cat_player_level_up() -> void:
 	%Label_PlayerLevel.text = "Level " + str(%CatPlayer.level)
-	 # Replace with function body.
+
+func _on_cat_player_xp_earned() -> void:
+	%Progress_PlayerXP.value = %CatPlayer.get_xp_progress() * 100.0

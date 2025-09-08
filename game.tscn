@@ -83,6 +83,11 @@ theme_override_fonts/font = ExtResource("4_fc0e3")
 theme_override_font_sizes/font_size = 32
 text = "Level: 1"
 
+[node name="Progress_PlayerXP" type="ProgressBar" parent="PlayerHUD/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
 [connection signal="health_depleted" from="CatPlayer" to="." method="_on_player_health_depleted"]
 [connection signal="level_up" from="CatPlayer" to="." method="_on_cat_player_level_up"]
+[connection signal="xp_earned" from="CatPlayer" to="." method="_on_cat_player_xp_earned"]
 [connection signal="timeout" from="Timer" to="." method="spawn_mob"]
