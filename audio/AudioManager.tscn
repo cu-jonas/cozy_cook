@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://qkarf1v8vtjn"]
+[gd_scene load_steps=9 format=3 uid="uid://qkarf1v8vtjn"]
 
 [ext_resource type="Script" path="res://audio/audio_manager.gd" id="1_pwwtb"]
 [ext_resource type="AudioStream" uid="uid://n8ttegf6p2g1" path="res://audio/music/Wanderers Tale.ogg" id="2_ngew5"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dxudj78s3547l" path="res://audio/sfx/player_bullet.ogg" id="5_hdtnj"]
 [ext_resource type="AudioStream" uid="uid://ciavsxltb1b8t" path="res://audio/sfx/enemy_die.ogg" id="6_cf61m"]
 [ext_resource type="AudioStream" uid="uid://bavks4mglwek4" path="res://audio/sfx/enemy_hit.ogg" id="7_dgn74"]
+[ext_resource type="AudioStream" uid="uid://cbns8cjpvs68i" path="res://audio/sfx/collect_xp.ogg" id="8_cebw5"]
 
 [node name="AudioManager" type="Node"]
 process_mode = 3
@@ -40,5 +41,10 @@ max_polyphony = 5
 
 [node name="EnemyHit" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("7_dgn74")
+volume_db = -8.157
+max_polyphony = 5
+
+[node name="CollectXP" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("8_cebw5")
 volume_db = -8.157
 max_polyphony = 5

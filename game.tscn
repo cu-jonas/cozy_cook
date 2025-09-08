@@ -15,7 +15,7 @@ y_sort_enabled = true
 script = ExtResource("1_fc0e3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -1
+layer = -10
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 offset_left = 7.0

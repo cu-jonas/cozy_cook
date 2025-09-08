@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var health = 100.0
+var xp = 0
 
 signal health_depleted
 
@@ -25,4 +26,10 @@ func _physics_process(delta: float):
 	if health <= 0.0:
 		AudioManager.play_sfx("PlayerDeath")
 		health_depleted.emit()
+	
+	
+func collect_xp(amount: int):
+	xp+=amount
+	print("XP: " + str(xp))
+	
 	
