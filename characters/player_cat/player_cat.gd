@@ -5,10 +5,10 @@ var xp = 0
 var level = 1
 var xp_requirements: Array = [
 	3,5,10,15,25
-]
+]a
 
 var weapon_speed: Array = [
-	.5, .4, .3, .2, .1
+	.5, .4, .3, .2, .1, .05
 ]
 
 signal health_depleted
@@ -51,5 +51,5 @@ func _check_level_up():
 	
 func _on_level_up() -> void:
 		scale = Vector2.ONE * (1.0 + (float(level) / 5.0))
-		%Weapon.set_weapon_cooldown(weapon_speed.get(level))
+		%Weapon.set_weapon_cooldown(weapon_speed[level])
 	
