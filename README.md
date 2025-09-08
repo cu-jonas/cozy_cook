@@ -25,6 +25,8 @@ This is Cozy Cook! A game I started to learn GoDot and as an example for teachin
 
 9/8 - Added XP Progress bar to HUD and fixed some bugs - 15 Minutes
 
+9/8 - Test readme change
+
 
 Assets -From : 
 - GDQuest Tutorial - https://www.gdquest.com/library/first_2d_game_godot4_vampire_survivor/
