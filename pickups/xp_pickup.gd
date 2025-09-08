@@ -5,6 +5,6 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("collect_xp"):
-		AudioManager.play_sfx("CollectXP", 0, true)
+		AudioManager.play_xp_sfx()
 		body.collect_xp(1)
 		queue_free() # remove the xp node
