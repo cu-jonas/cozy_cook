@@ -21,6 +21,8 @@ This is Cozy Cook! A game I started to learn GoDot and as an example for teachin
 
 9/8 - Added XP drops from enemies and let player pick them up to earn xp - 30 minutes
 
+9/8 - Added player leveling up from XP pickups that increases size and speed - 30 minutes
+
 
 Assets -From : 
 - GDQuest Tutorial - https://www.gdquest.com/library/first_2d_game_godot4_vampire_survivor/
