@@ -101,6 +101,12 @@ project/assembly_name="Getting started with Godot 4"
 
 enabled=PackedStringArray("res://addons/colorpicker_presets/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://builds/": "red"
+}
+
 [input]
 
 move_left={
