@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 var health = 3
 
+signal mob_defeated
 
 func _ready():
 	%Glyphy.play_walk()
@@ -26,6 +27,9 @@ func _die():
 	_spawn_crystal()
 	_spawn_smoke()
 	AudioManager.play_sfx("EnemyDie", 0, true)
+	
+	mob_defeated.emit(%Glyphy.letter)
+	
 	queue_free()
 	
 	
