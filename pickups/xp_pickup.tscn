@@ -62,4 +62,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_ler7p")
 }
 
+[node name="Expiration" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Expiration" to="." method="_on_expiration_timeout"]

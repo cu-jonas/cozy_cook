@@ -1,14 +1,16 @@
 extends CharacterBody2D
+class_name Mob
 
 @onready var player = get_node("/root/Main/Game/CatPlayer")
 
 var health = 3
 
+signal mob_defeated
 
 func _ready():
 	%Glyphy.play_walk()
 
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * 150.0
 	move_and_slide()
@@ -20,14 +22,26 @@ func take_damage():
 	AudioManager.play_sfx("EnemyHit", 0, true)
 	
 	if health == 0:
-		queue_free()
-		const SMOKE_SCENE = preload("res://smoke_explosion/smoke_explosion.tscn")
-		var smoke = SMOKE_SCENE.instantiate()
-		get_parent().add_child(smoke)
-		smoke.global_position = global_position
-		AudioManager.play_sfx("EnemyDie", 0, true)
+		call_deferred("_die")
 
-		const XP_CRYSTAL = preload("res://pickups/xp_pickup.tscn")
-		var xp = XP_CRYSTAL.instantiate()
-		get_parent().add_child(xp)
-		xp.global_position = global_position
+func _die():
+	_spawn_crystal()
+	_spawn_smoke()
+	AudioManager.play_sfx("EnemyDie", 0, true)
+	
+	mob_defeated.emit(%Glyphy.letter)
+	
+	queue_free()
+	
+	
+func _spawn_smoke():
+	const SMOKE_SCENE = preload("res://smoke_explosion/smoke_explosion.tscn")
+	var smoke = SMOKE_SCENE.instantiate()
+	get_parent().add_child(smoke)
+	smoke.global_position = global_position
+
+func _spawn_crystal():
+	const XP_CRYSTAL = preload("res://pickups/xp_pickup.tscn")
+	var xp = XP_CRYSTAL.instantiate()
+	get_parent().add_child(xp)
+	xp.global_position = global_position
