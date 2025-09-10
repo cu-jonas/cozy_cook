@@ -64,3 +64,22 @@ func get_xp_progress() -> float:
 	var required_xp = xp_requirements[level - 1]
 	var progress = float(xp) / float(required_xp)
 	return clamp(progress, 0.0, 1.0)
+
+func reset_player():
+	# Reset stats
+	health = 100.0
+	xp = 0
+	level = 1
+	
+	# Reset visuals
+	scale = Vector2.ONE
+	%AnimatedCat.play_animation(Vector2.ZERO) # idle animation
+	%AnimationPlayer.stop(true) # stop flashing animations
+	%HealthBar.value = health
+	
+	# Reset weapon cooldown
+	if weapon_speed.size() > 0:
+		%Weapon.set_weapon_cooldown(weapon_speed[0])
+	
+	# Reset XP bar (emit so UI updates if bound)
+	xp_earned.emit()

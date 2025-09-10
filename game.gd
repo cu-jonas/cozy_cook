@@ -7,10 +7,23 @@ var goal_words : Array = [ 'CAT' ]
 var goal_word_index = 0
 
 func _ready() -> void:
+	start_game()
+
+func start_game():
+	
+	# remove existing mobs:
+	for child in get_children():
+		if child is Mob or child is XpPickup:
+			child.queue_free()	
+	
+	# populate initial mobs
 	for i in range(5):
 		spawn_mob()
 		
-	# set the first word
+	%CatPlayer.reset_player()
+	_on_cat_player_level_up()
+	_on_cat_player_xp_earned()
+	goal_word_index = 0
 	%GoalWord.set_word(goal_words[0])
 
 func spawn_mob():

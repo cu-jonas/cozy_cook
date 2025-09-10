@@ -1,4 +1,5 @@
 extends Area2D
+class_name XpPickup
 
 func _ready() -> void:
 	%AnimationPlayer.play("wobble")

@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Mob
 
 @onready var player = get_node("/root/Main/Game/CatPlayer")
 
