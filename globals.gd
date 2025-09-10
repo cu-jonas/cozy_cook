@@ -1,3 +1,3 @@
 extends Node
 
-var Game : Game
+var CatGame : Game

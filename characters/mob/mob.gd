@@ -26,7 +26,7 @@ func take_damage():
 
 func _die():
 	
-	if randf() < .2 and Globals.Game.unlocked_words.has("SOUP"):
+	if randf() < .2 and Globals.CatGame.unlocked_words.has("SOUP"):
 		_spawn_soup()	
 	else:
 		_spawn_crystal()

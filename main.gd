@@ -5,7 +5,7 @@ var words : Array = [ 'SOUP', 'CARROT', 'PUMPKIN']
 
 
 func _ready() -> void:
-	Globals.Game = %Game
+	Globals.CatGame = %Game
 	_start_level()
 	
 func _on_next_level_button_pressed() -> void:
@@ -50,7 +50,7 @@ func _on_game_level_won() -> void:
 	
 	level_index += 1
 	
-	if level_index <= words.size():
+	if level_index < words.size():
 		%LevelComplete.visible = true
 	else:
 		%GameWon.visible = true
