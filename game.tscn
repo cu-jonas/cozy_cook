@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://sixfqsom77do"]
+[gd_scene load_steps=8 format=3 uid="uid://sixfqsom77do"]
 
 [ext_resource type="Script" uid="uid://dmnpsxvjpg7lh" path="res://game.gd" id="1_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://0rgoslwspiir" path="res://trees/tree.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://xwqhwh8tyog6" path="res://characters/player_cat/player_cat.tscn" id="2_fc0e3"]
 [ext_resource type="FontFile" uid="uid://bmfccjxytgkd6" path="res://characters/glyphy/sixtyfour.ttf" id="4_fc0e3"]
+[ext_resource type="Script" uid="uid://cogj2j2ytmac8" path="res://goal_world.gd" id="5_7jktm"]
 
 [sub_resource type="Curve2D" id="Curve2D_7jktm"]
 _data = {
@@ -62,7 +63,7 @@ autostart = true
 
 [node name="PlayerHUD" type="CanvasLayer" parent="."]
 
-[node name="PanelContainer" type="PanelContainer" parent="PlayerHUD"]
+[node name="TopRight" type="PanelContainer" parent="PlayerHUD"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -71,23 +72,49 @@ offset_bottom = 40.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7jktm")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PlayerHUD/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerHUD/TopRight"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="Label_PlayerLevel" type="Label" parent="PlayerHUD/PanelContainer/VBoxContainer"]
+[node name="Label_PlayerLevel" type="Label" parent="PlayerHUD/TopRight/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_fc0e3")
 theme_override_font_sizes/font_size = 32
 text = "Level: 1"
 
-[node name="Progress_PlayerXP" type="ProgressBar" parent="PlayerHUD/PanelContainer/VBoxContainer"]
+[node name="Progress_PlayerXP" type="ProgressBar" parent="PlayerHUD/TopRight/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PlayerHUD"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="GoalWord" type="RichTextLabel" parent="PlayerHUD/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_fc0e3")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[u][color=#00000080]A[/color][/u]AAAAA"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_7jktm")
 
 [connection signal="health_depleted" from="CatPlayer" to="." method="_on_player_health_depleted"]
 [connection signal="level_up" from="CatPlayer" to="." method="_on_cat_player_level_up"]
 [connection signal="xp_earned" from="CatPlayer" to="." method="_on_cat_player_xp_earned"]
 [connection signal="timeout" from="Timer" to="." method="spawn_mob"]
+[connection signal="word_completed" from="PlayerHUD/PanelContainer/GoalWord" to="." method="_on_goal_world_word_completed"]
