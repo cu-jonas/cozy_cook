@@ -22,6 +22,11 @@ func _update_word():
 	
 	# Build bbcode string per letter
 	for i in current_word:
+		
+		#ignore spaces
+		if i == ' ':
+			result += " "
+		
 		if revealed_letters.has(i):
 			# fully visible
 			result += "[color=#ffffff]"+i+"[/color]"

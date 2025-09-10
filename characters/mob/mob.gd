@@ -25,10 +25,14 @@ func take_damage():
 		call_deferred("_die")
 
 func _die():
-	_spawn_crystal()
+	
+	if randf() < .2 and Globals.CatGame.unlocked_words.has("SOUP"):
+		_spawn_soup()	
+	else:
+		_spawn_crystal()
+		
 	_spawn_smoke()
 	AudioManager.play_sfx("EnemyDie", 0, true)
-	
 	mob_defeated.emit(%Glyphy.letter)
 	
 	queue_free()
@@ -45,3 +49,9 @@ func _spawn_crystal():
 	var xp = XP_CRYSTAL.instantiate()
 	get_parent().add_child(xp)
 	xp.global_position = global_position
+
+func _spawn_soup():
+	const SOUP = preload("res://pickups/soup.tscn")
+	var soup = SOUP.instantiate()
+	get_parent().add_child(soup)
+	soup.global_position = global_position
