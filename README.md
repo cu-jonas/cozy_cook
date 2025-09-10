@@ -25,8 +25,9 @@ This is Cozy Cook! A game I started to learn GoDot and as an example for teachin
 
 9/8 - Added XP Progress bar to HUD and fixed some bugs - 15 Minutes
 
-9/8 - Test readme change
+9/9 - Killing enemies not tracks the letter and progresses to completing a word. Added a victory screen when word is completed with next level button - 1 hour
 
+9/10 - Added level progression with victory and next level screens. Added Soup that heals the player that unlocks after the first level - 1 hour
 
 Assets -From : 
 - GDQuest Tutorial - https://www.gdquest.com/library/first_2d_game_godot4_vampire_survivor/

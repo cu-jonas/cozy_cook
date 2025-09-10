@@ -43,6 +43,11 @@ func collect_xp(amount: int):
 	# run this after the level up so it goes down!
 	xp_earned.emit()
 	
+func collect_soup(amount: int):
+	# heal the player
+	health = clamp(health + amount, 0, 100)
+	%HealthBar.value = health
+
 func _check_level_up():
 	while level - 1 < xp_requirements.size() and xp >= xp_requirements[level - 1]:
 		xp -= xp_requirements[level - 1] # subtract spent XP (optional)
