@@ -1,4 +1,8 @@
+# Cozy Cook
+
 This is Cozy Cook! A game I started to learn GoDot and as an example for teaching ATLS 4150/5150.
+
+## Week 2 Assignment - Your First Game
 
 8/16 - I started by used to GDQuest Tutorial and project assets from https://www.youtube.com/watch?v=GwCiGixlqiU which took me about 3 hours to complete.
 
@@ -19,6 +23,8 @@ This is Cozy Cook! A game I started to learn GoDot and as an example for teachin
 
 8/30 - Added web build with CI deployment to GitHub pages (I put up a How-To here: https://www.notion.so/Example-Godot-CI-25fb61489a57801a8656caae4e2bf09c?source=copy_link ) - 30 minutes
 
+## Week 3 Assignment - Loop Implementation
+
 9/8 - Added XP drops from enemies and let player pick them up to earn xp - 30 minutes
 
 9/8 - Added player leveling up from XP pickups that increases size and speed - 30 minutes
@@ -29,7 +35,7 @@ This is Cozy Cook! A game I started to learn GoDot and as an example for teachin
 
 9/10 - Added level progression with victory and next level screens. Added Soup that heals the player that unlocks after the first level - 1 hour
 
-Assets -From : 
+## Assets Used
 - GDQuest Tutorial - https://www.gdquest.com/library/first_2d_game_godot4_vampire_survivor/
 - Sprout Lands -By : Cup Nooble - https://cupnooble.itch.io/
 - Super Dialogue Audio Pack by Dillon Becker. This work is licensed under CC BY 4.0 https://dillonbecker.itch.io

@@ -37,16 +37,18 @@ func _physics_process(delta: float):
 		health_depleted.emit()
 	
 	
-func collect_xp(amount: int):
-	xp+=amount
-	_check_level_up()
-	# run this after the level up so it goes down!
-	xp_earned.emit()
+func collect_pickup(pickup_type:String, pickup_value:int):
+	if pickup_type == "xp":
+		xp+=pickup_value
+		_check_level_up()
+		# run this after the level up so it goes down!
+		xp_earned.emit()
+	elif pickup_type == "health":
+		# heal the player
+		health = clamp(health + pickup_value, 0, 100)
+		%HealthBar.value = health
 	
-func collect_soup(amount: int):
-	# heal the player
-	health = clamp(health + amount, 0, 100)
-	%HealthBar.value = health
+
 
 func _check_level_up():
 	while level - 1 < xp_requirements.size() and xp >= xp_requirements[level - 1]:

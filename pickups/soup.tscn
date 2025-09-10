@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bpeqftfbdrapf"]
 
-[ext_resource type="Script" uid="uid://duve1nphfw7dc" path="res://pickups/soup.gd" id="1_l4fk3"]
+[ext_resource type="Script" uid="uid://sdldtk6tgf7f" path="res://pickups/pickup.gd" id="1_l4fk3"]
 [ext_resource type="Texture2D" uid="uid://wlbes1ulnqnp" path="res://assets/items-spritesheet.png" id="2_ty45t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_77g8h"]
@@ -51,6 +51,8 @@ _data = {
 [node name="Soup" type="Area2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_l4fk3")
+pickup_type = "health"
+pickup_value = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_77g8h")
