@@ -45,7 +45,7 @@ func _spawn_smoke():
 	smoke.global_position = global_position
 
 func _spawn_crystal():
-	const XP_CRYSTAL = preload("res://pickups/xp_pickup.tscn")
+	const XP_CRYSTAL = preload("res://pickups/xp.tscn")
 	var xp = XP_CRYSTAL.instantiate()
 	get_parent().add_child(xp)
 	xp.global_position = global_position

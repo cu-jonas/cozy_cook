@@ -15,26 +15,28 @@ func add_letter(letter: String):
 	_update_word()
 
 func _update_word():
-	clear()  # clear previous bbcode
+	clear()
 	var result := ""
+	var all_found := true
 	
-	var all_found = true
-	
-	# Build bbcode string per letter
+	# Make a temporary copy so we can "consume" letters
+	var temp_revealed = revealed_letters.duplicate()
+
 	for i in current_word:
-		
-		#ignore spaces
-		if i == ' ':
+		if i == " ":
 			result += " "
-		
-		if revealed_letters.has(i):
-			# fully visible
-			result += "[color=#ffffff]"+i+"[/color]"
+			continue
+
+		var idx = temp_revealed.find(i)
+		if idx != -1:
+			# consume one instance of that letter
+			temp_revealed.remove_at(idx)
+			result += "[color=#ffffff]" + i + "[/color]"
 		else:
-			# faded out
 			all_found = false
-			result += "[u][color=#00000060]"+i+"[/color][/u]"
-	
+			result += "[u][color=#00000060]" + i + "[/color][/u]"
+
 	append_text(result)
+	
 	if all_found:
 		word_completed.emit()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://4imwjmbgpuwh"]
 
 [ext_resource type="Script" uid="uid://bc15pl5k0b5t8" path="res://main.gd" id="1_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://sixfqsom77do" path="res://game.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://sixfqsom77do" path="res://game/game.tscn" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://wlbes1ulnqnp" path="res://assets/items-spritesheet.png" id="3_1bvp3"]
 [ext_resource type="FontFile" uid="uid://bmfccjxytgkd6" path="res://characters/glyphy/sixtyfour.ttf" id="3_h2yge"]
 
@@ -25,6 +25,7 @@ unique_name_in_owner = true
 
 [node name="GameOver" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="GameOver"]
 anchors_preset = 15
@@ -63,7 +64,6 @@ text = "Retry Level"
 
 [node name="LevelComplete" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="LevelComplete"]
 anchors_preset = 15
@@ -90,7 +90,8 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="LevelComplete/ColorRect/PanelContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="LevelComplete/ColorRect/PanelContainer/VBoxContainer"]
+[node name="CompletedLabel" type="Label" parent="LevelComplete/ColorRect/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 128
 text = "Completed Recipe"
