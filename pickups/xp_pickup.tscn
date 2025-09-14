@@ -45,6 +45,7 @@ _data = {
 }
 
 [node name="XP_Pickup" type="Area2D"]
+modulate = Color(0.497474, 0.497474, 0.497474, 1)
 scale = Vector2(2, 2)
 script = ExtResource("1_jcp38")
 

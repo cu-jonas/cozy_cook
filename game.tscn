@@ -1,10 +1,43 @@
-[gd_scene load_steps=8 format=3 uid="uid://sixfqsom77do"]
+[gd_scene load_steps=12 format=3 uid="uid://sixfqsom77do"]
 
 [ext_resource type="Script" uid="uid://dmnpsxvjpg7lh" path="res://game.gd" id="1_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://0rgoslwspiir" path="res://environment/trees/tree.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://xwqhwh8tyog6" path="res://characters/player_cat/player_cat.tscn" id="2_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://cwcv74fqln3cj" path="res://environment/green_forest.tscn" id="2_ryrav"]
 [ext_resource type="FontFile" uid="uid://bmfccjxytgkd6" path="res://characters/glyphy/sixtyfour.ttf" id="4_fc0e3"]
 [ext_resource type="Script" uid="uid://cogj2j2ytmac8" path="res://goal_world.gd" id="5_7jktm"]
+
+[sub_resource type="Gradient" id="Gradient_7jktm"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.133995, 0.813896)
+colors = PackedColorArray(0, 0, 0, 1, 0.9767, 0.88659, 0.748113, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ryrav"]
+gradient = SubResource("Gradient_7jktm")
+
+[sub_resource type="Environment" id="Environment_7jktm"]
+background_mode = 3
+background_color = Color(0.69856, 0.539672, 0.798215, 1)
+ambient_light_source = 1
+reflected_light_source = 1
+glow_enabled = true
+glow_intensity = 0.22
+glow_bloom = 0.03
+glow_hdr_threshold = 0.56
+glow_hdr_scale = 0.0
+glow_hdr_luminance_cap = 6.16
+fog_mode = 1
+fog_light_color = Color(0.620215, 0.398984, 0.980009, 1)
+fog_light_energy = 1.77
+fog_sun_scatter = 0.5
+fog_density = 1.0
+fog_height = 14.12
+fog_height_density = 0.8828
+fog_depth_curve = 1.1487
+fog_depth_begin = 97.3
+fog_depth_end = 257.2
+adjustment_enabled = true
+adjustment_color_correction = SubResource("GradientTexture1D_ryrav")
 
 [sub_resource type="Curve2D" id="Curve2D_7jktm"]
 _data = {
@@ -23,19 +56,14 @@ bg_color = Color(0.116741, 0.116741, 0.116741, 0.639216)
 y_sort_enabled = true
 script = ExtResource("1_fc0e3")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -10
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7jktm")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_left = 7.0
-offset_top = 4.0
-offset_right = 1909.0
-offset_bottom = 1082.0
-color = Color(0.314266, 0.473985, 0.171756, 1)
+[node name="TileMapLayer" parent="." instance=ExtResource("2_ryrav")]
 
 [node name="CatPlayer" parent="." instance=ExtResource("2_fc0e3")]
 unique_name_in_owner = true
-position = Vector2(938, 566)
+position = Vector2(679, 228)
 
 [node name="Path2D" type="Path2D" parent="CatPlayer"]
 curve = SubResource("Curve2D_7jktm")

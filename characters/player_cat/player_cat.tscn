@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://xwqhwh8tyog6"]
+[gd_scene load_steps=16 format=3 uid="uid://xwqhwh8tyog6"]
 
 [ext_resource type="Script" uid="uid://cayi4d37mhgto" path="res://characters/player_cat/player_cat.gd" id="1_mk5fp"]
 [ext_resource type="SpriteFrames" uid="uid://tg5lu6a4yqcp" path="res://characters/player_cat/cat_frames.tres" id="3_ht42k"]
@@ -6,6 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://84srdy68exyj" path="res://weapons/laser/laser.tscn" id="5_6vay5"]
 [ext_resource type="AudioStream" uid="uid://cd1y035s8crbo" path="res://audio/sfx/take_damage.wav" id="5_sjkqh"]
 [ext_resource type="AudioStream" uid="uid://c47s2o2n5jfri" path="res://audio/sfx/death.wav" id="6_idf8u"]
+
+[sub_resource type="Gradient" id="Gradient_idf8u"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.201946, 0.605839)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6vay5"]
+gradient = SubResource("Gradient_idf8u")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
 
 [sub_resource type="Animation" id="Animation_sjkqh"]
 length = 0.001
@@ -67,8 +80,18 @@ corner_radius_bottom_left = 10
 [node name="PlayerCat" type="CharacterBody2D"]
 script = ExtResource("1_mk5fp")
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -33)
+rotation = 3.14159
+scale = Vector2(10, 10)
+color = Color(0.638577, 0.873466, 0.992801, 1)
+energy = 2.0
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_6vay5")
+
 [node name="AnimatedCat" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+self_modulate = Color(0.347817, 0.347817, 0.347817, 1)
 position = Vector2(0, -28.34)
 scale = Vector2(4, 4)
 sprite_frames = ExtResource("3_ht42k")
@@ -103,6 +126,7 @@ debug_color = Color(0.790415, 0.0759102, 3.85046e-07, 0.419608)
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
+light_mask = 0
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

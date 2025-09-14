@@ -32,6 +32,7 @@ stream = ExtResource("4_hdtnj")
 
 [node name="PlayerLevelUp" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("5_jewxp")
+volume_db = -29.154
 
 [node name="PlayerBullet" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("5_hdtnj")
