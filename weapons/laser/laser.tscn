@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://84srdy68exyj"]
+
+[ext_resource type="Script" uid="uid://ds5brf0nua6do" path="res://weapons/laser/laser.gd" id="1_b2cb0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o2wld"]
+radius = 300.0
+
+[sub_resource type="Gradient" id="Gradient_b2cb0"]
+colors = PackedColorArray(0.833647, 0.660742, 0.252325, 1, 1, 0, 0, 1)
+
+[node name="Laser" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_b2cb0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_o2wld")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+target_position = Vector2(0, 0)
+
+[node name="Line2D" type="Line2D" parent="RayCast2D"]
+unique_name_in_owner = true
+points = PackedVector2Array(0, 0, 300, 0)
+width = 8.0
+gradient = SubResource("Gradient_b2cb0")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 10.0
+antialiased = true

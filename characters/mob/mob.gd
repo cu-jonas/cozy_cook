@@ -3,7 +3,7 @@ class_name Mob
 
 @onready var player = get_node("/root/Main/Game/CatPlayer")
 
-var health = 3
+var health = 100
 
 signal mob_defeated
 
@@ -11,17 +11,18 @@ func _ready():
 	%Glyphy.play_walk()
 
 func _physics_process(_delta: float):
-	var direction = global_position.direction_to(player.global_position)
-	velocity = direction * 150.0
-	move_and_slide()
+	if player:
+		var direction = global_position.direction_to(player.global_position)
+		velocity = direction * 150.0
+		move_and_slide()
 
-func take_damage():
-	health -= 1
+func take_damage(damage: float):
+	health -= damage
 	
 	%Glyphy.play_hurt()
-	AudioManager.play_sfx("EnemyHit", 0, true)
+	#AudioManager.play_sfx("EnemyHit", 0, true)
 	
-	if health == 0:
+	if health <= 0:
 		call_deferred("_die")
 
 func _die():

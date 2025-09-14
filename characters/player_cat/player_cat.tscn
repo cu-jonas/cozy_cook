@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cayi4d37mhgto" path="res://characters/player_cat/player_cat.gd" id="1_mk5fp"]
 [ext_resource type="SpriteFrames" uid="uid://tg5lu6a4yqcp" path="res://characters/player_cat/cat_frames.tres" id="3_ht42k"]
-[ext_resource type="PackedScene" uid="uid://dib33o0j2vmc5" path="res://weapons/pistol/weapon.tscn" id="3_m4gtg"]
 [ext_resource type="Script" uid="uid://dlf5vi7esjhw1" path="res://characters/player_cat/animated_cat.gd" id="4_sjkqh"]
+[ext_resource type="PackedScene" uid="uid://84srdy68exyj" path="res://weapons/laser/laser.tscn" id="5_6vay5"]
 [ext_resource type="AudioStream" uid="uid://cd1y035s8crbo" path="res://audio/sfx/take_damage.wav" id="5_sjkqh"]
 [ext_resource type="AudioStream" uid="uid://c47s2o2n5jfri" path="res://audio/sfx/death.wav" id="6_idf8u"]
 
@@ -87,9 +87,9 @@ shape = SubResource("CircleShape2D_onrkg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Weapon" parent="." instance=ExtResource("3_m4gtg")]
+[node name="Laser" parent="." instance=ExtResource("5_6vay5")]
 unique_name_in_owner = true
-position = Vector2(0, -31)
+position = Vector2(0, -35)
 
 [node name="HurtBox" type="Area2D" parent="."]
 unique_name_in_owner = true
