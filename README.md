@@ -29,8 +29,13 @@ This is Cozy Cook! A game I started to learn GoDot and as an example for teachin
 
 9/10 - Added level progression with victory and next level screens. Added Soup that heals the player that unlocks after the first level - 1 hour
 
+##  Assignment 4
 
-9/14 - Added laser using tutorial from https://www.youtube.com/watch?v=llGpvNWUvLY - 1 hour
+9/14 - Added laser using tutorial from https://www.youtube.com/watch?v=llGpvNWUvLY - 2 hours
+9/14 - Added lighting and tilemap - 2 hours
+9/14 - Added Custom UI Theme - 30 Minutes
+
+
 
 Assets -From : 
 - GDQuest Tutorial - https://www.gdquest.com/library/first_2d_game_godot4_vampire_survivor/

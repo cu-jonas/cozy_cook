@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://sixfqsom77do"]
+[gd_scene load_steps=11 format=3 uid="uid://sixfqsom77do"]
 
 [ext_resource type="Script" uid="uid://dmnpsxvjpg7lh" path="res://game.gd" id="1_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://0rgoslwspiir" path="res://environment/trees/tree.tscn" id="2_e2o6t"]
@@ -45,13 +45,6 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7jktm"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0.116741, 0.116741, 0.116741, 0.639216)
-
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_fc0e3")
@@ -91,32 +84,45 @@ autostart = true
 
 [node name="PlayerHUD" type="CanvasLayer" parent="."]
 
-[node name="TopRight" type="PanelContainer" parent="PlayerHUD"]
+[node name="PlayerLevel" type="Control" parent="PlayerHUD"]
+layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -58.0
+offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_7jktm")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PlayerHUD/TopRight"]
+[node name="TopRight" type="PanelContainer" parent="PlayerHUD/PlayerLevel"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -390.0
+offset_top = 50.0
+offset_right = -90.0
+offset_bottom = 150.0
+grow_horizontal = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerHUD/PlayerLevel/TopRight"]
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="Label_PlayerLevel" type="Label" parent="PlayerHUD/TopRight/VBoxContainer"]
+[node name="Label_PlayerLevel" type="Label" parent="PlayerHUD/PlayerLevel/TopRight/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_fc0e3")
 theme_override_font_sizes/font_size = 32
 text = "Level: 1"
 
-[node name="Progress_PlayerXP" type="ProgressBar" parent="PlayerHUD/TopRight/VBoxContainer"]
+[node name="Progress_PlayerXP" type="ProgressBar" parent="PlayerHUD/PlayerLevel/TopRight/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PlayerHUD"]
+[node name="BottomObjective" type="Control" parent="PlayerHUD"]
+layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -128,7 +134,19 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="GoalWord" type="RichTextLabel" parent="PlayerHUD/PanelContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="PlayerHUD/BottomObjective"]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 25.0
+grow_horizontal = 2
+
+[node name="GoalWord" type="RichTextLabel" parent="PlayerHUD/BottomObjective/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("4_fc0e3")
@@ -145,4 +163,4 @@ script = ExtResource("5_7jktm")
 [connection signal="level_up" from="CatPlayer" to="." method="_on_cat_player_level_up"]
 [connection signal="xp_earned" from="CatPlayer" to="." method="_on_cat_player_xp_earned"]
 [connection signal="timeout" from="Timer" to="." method="spawn_mob"]
-[connection signal="word_completed" from="PlayerHUD/PanelContainer/GoalWord" to="." method="_on_goal_world_word_completed"]
+[connection signal="word_completed" from="PlayerHUD/BottomObjective/PanelContainer/GoalWord" to="." method="_on_goal_world_word_completed"]

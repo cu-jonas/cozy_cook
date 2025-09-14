@@ -108,6 +108,10 @@ folder_colors={
 "res://builds/": "red"
 }
 
+[gui]
+
+theme/custom="uid://ds21fnoaxeym8"
+
 [input]
 
 move_left={
