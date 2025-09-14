@@ -61,3 +61,9 @@ stream = ExtResource("8_cebw5")
 volume_db = -8.157
 max_polyphony = 5
 bus = &"SFX"
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("8_cebw5")
+volume_db = -8.157
+max_polyphony = 2
+bus = &"SFX"

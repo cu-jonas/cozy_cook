@@ -46,7 +46,7 @@ tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.233333, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"transitions": PackedFloat32Array(1, -2, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
 }
@@ -118,8 +118,6 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -32)
 shape = SubResource("CircleShape2D_onrkg")
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Laser" parent="." instance=ExtResource("5_6vay5")]
 unique_name_in_owner = true

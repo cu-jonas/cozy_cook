@@ -39,6 +39,7 @@ func spawn_mob():
 func mob_killed(letter: String):
 	print(letter + " defeated")
 	%GoalWord.add_letter(letter)
+	%Camera2D.apply_random_shake()
 
 func _on_player_health_depleted() -> void:
 	level_fail.emit()

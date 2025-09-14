@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://sixfqsom77do"]
+[gd_scene load_steps=12 format=3 uid="uid://sixfqsom77do"]
 
 [ext_resource type="Script" uid="uid://dmnpsxvjpg7lh" path="res://game.gd" id="1_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://0rgoslwspiir" path="res://environment/trees/tree.tscn" id="2_e2o6t"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cwcv74fqln3cj" path="res://environment/green_forest.tscn" id="2_ryrav"]
 [ext_resource type="FontFile" uid="uid://bmfccjxytgkd6" path="res://characters/glyphy/sixtyfour.ttf" id="4_fc0e3"]
 [ext_resource type="Script" uid="uid://cogj2j2ytmac8" path="res://goal_world.gd" id="5_7jktm"]
+[ext_resource type="Script" uid="uid://cok7j5tbs3gmd" path="res://environment/camera_2d.gd" id="7_eow3j"]
 
 [sub_resource type="Gradient" id="Gradient_7jktm"]
 interpolation_mode = 2
@@ -18,7 +19,7 @@ gradient = SubResource("Gradient_7jktm")
 [sub_resource type="Environment" id="Environment_7jktm"]
 background_mode = 3
 background_color = Color(0.69856, 0.539672, 0.798215, 1)
-background_energy_multiplier = 5.64
+background_energy_multiplier = 3.0
 reflected_light_source = 1
 glow_enabled = true
 glow_intensity = 0.24
@@ -57,7 +58,12 @@ environment = SubResource("Environment_7jktm")
 
 [node name="CatPlayer" parent="." instance=ExtResource("2_fc0e3")]
 unique_name_in_owner = true
-position = Vector2(679, 228)
+
+[node name="Camera2D" type="Camera2D" parent="CatPlayer"]
+unique_name_in_owner = true
+script = ExtResource("7_eow3j")
+RANDOM_SHAKE_STRENGTH = 5.0
+SHAKE_DECAY_RATE = 2.0
 
 [node name="Path2D" type="Path2D" parent="CatPlayer"]
 curve = SubResource("Curve2D_7jktm")
