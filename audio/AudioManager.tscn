@@ -19,6 +19,7 @@ unique_name_in_owner = true
 
 [node name="Main" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("2_ngew5")
+bus = &"Music"
 parameters/looping = true
 
 [node name="Sfx" type="Node" parent="."]
@@ -26,30 +27,37 @@ unique_name_in_owner = true
 
 [node name="PlayerHurt" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("3_ecn5r")
+bus = &"SFX"
 
 [node name="PlayerDeath" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("4_hdtnj")
+bus = &"SFX"
 
 [node name="PlayerLevelUp" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("5_jewxp")
 volume_db = -29.154
+bus = &"SFX"
 
 [node name="PlayerBullet" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("5_hdtnj")
 volume_db = -20.8
 max_polyphony = 10
+bus = &"SFX"
 
 [node name="EnemyDie" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("6_cf61m")
 volume_db = -13.867
 max_polyphony = 5
+bus = &"SFX"
 
 [node name="EnemyHit" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("7_dgn74")
 volume_db = -8.157
 max_polyphony = 5
+bus = &"SFX"
 
 [node name="CollectXP" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("8_cebw5")
 volume_db = -8.157
 max_polyphony = 5
+bus = &"SFX"

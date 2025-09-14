@@ -13,7 +13,6 @@ func play_animation( direction: Vector2):
 		else:
 			facing_direction = "back" if direction.y < 0 else "front"
 		
-		print(facing_direction)
 		play("walking_" + facing_direction)
 		
 	else: # we are idle

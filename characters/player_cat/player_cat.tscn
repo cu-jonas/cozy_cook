@@ -9,7 +9,7 @@
 
 [sub_resource type="Gradient" id="Gradient_idf8u"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0.201946, 0.605839)
+offsets = PackedFloat32Array(0, 0.456818)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_6vay5"]
@@ -65,6 +65,12 @@ radius = 34.0147
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3pqv"]
 bg_color = Color(0.152941, 0.168627, 0.188235, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -72,6 +78,12 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqtel"]
 bg_color = Color(0.623529, 0.866667, 0.317647, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -84,14 +96,13 @@ script = ExtResource("1_mk5fp")
 position = Vector2(0, -33)
 rotation = 3.14159
 scale = Vector2(10, 10)
-color = Color(0.638577, 0.873466, 0.992801, 1)
-energy = 2.0
+color = Color(0.766013, 0.946872, 0.58739, 1)
+energy = 3.46
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_6vay5")
 
 [node name="AnimatedCat" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-self_modulate = Color(0.347817, 0.347817, 0.347817, 1)
 position = Vector2(0, -28.34)
 scale = Vector2(4, 4)
 sprite_frames = ExtResource("3_ht42k")
@@ -124,25 +135,6 @@ position = Vector2(0, -30)
 shape = SubResource("CircleShape2D_i3pqv")
 debug_color = Color(0.790415, 0.0759102, 3.85046e-07, 0.419608)
 
-[node name="HealthBar" type="ProgressBar" parent="."]
-unique_name_in_owner = true
-light_mask = 0
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -89.275
-offset_right = 50.0
-offset_bottom = -69.275
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_i3pqv")
-theme_override_styles/fill = SubResource("StyleBoxFlat_hqtel")
-value = 100.0
-show_percentage = false
-
 [node name="AudioHitSound" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, -28.34)
@@ -152,5 +144,29 @@ stream = ExtResource("5_sjkqh")
 [node name="AudioDeathSound" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("6_idf8u")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+unique_name_in_owner = true
+light_mask = 0
+visibility_layer = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -129.0
+offset_right = 50.0
+offset_bottom = -109.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_i3pqv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hqtel")
+value = 50.0
+show_percentage = false
 
 [connection signal="level_up" from="." to="." method="_on_level_up"]

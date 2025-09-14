@@ -11,6 +11,8 @@ var weapon_dps: Array = [
 	100, 150, 200, 250, 300, 350
 ]
 
+var character_scale: Array = [ 1.0, 1.2, 1.35, 1.45, 1.5, 1.55]
+
 signal health_depleted
 signal level_up
 signal xp_earned
@@ -58,7 +60,7 @@ func _check_level_up():
 	
 func _on_level_up() -> void:
 		AudioManager.play_sfx("PlayerLevelUp", 0, true)
-		scale = Vector2.ONE * (1.0 + (float(level) / 5.0))
+		scale = Vector2.ONE * character_scale[level - 1]
 		%Laser.set_laser_damage(weapon_dps[level - 1])
 
 func get_xp_progress() -> float:
