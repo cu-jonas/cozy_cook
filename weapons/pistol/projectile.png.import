@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvmbm3sxj85fm"
-path="res://.godot/imported/circle_32.png-ff53eadac5c62484a55afe7e47d5145f.ctex"
+uid="uid://dftkbqwsfd68r"
+path="res://.godot/imported/projectile.png-4a975244a751cd860fc1d8243f1fe062.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://smoke_explosion/circle_32.png"
-dest_files=["res://.godot/imported/circle_32.png-ff53eadac5c62484a55afe7e47d5145f.ctex"]
+source_file="res://weapons/pistol/projectile.png"
+dest_files=["res://.godot/imported/projectile.png-4a975244a751cd860fc1d8243f1fe062.ctex"]
 
 [params]
 

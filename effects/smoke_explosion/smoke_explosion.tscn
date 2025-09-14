@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://dhmhmrth6rdce"]
 
-[ext_resource type="Shader" uid="uid://dglfm464l57d2" path="res://smoke_explosion/smoke_explosion.gdshader" id="1_bmef6"]
-[ext_resource type="Script" uid="uid://cjuyegxk1su1v" path="res://smoke_explosion/smoke_explosion.gd" id="1_kb8ql"]
+[ext_resource type="Shader" uid="uid://dglfm464l57d2" path="res://effects/smoke_explosion/smoke_explosion.gdshader" id="1_bmef6"]
+[ext_resource type="Script" uid="uid://cjuyegxk1su1v" path="res://effects/smoke_explosion/smoke_explosion.gd" id="1_kb8ql"]
 
 [sub_resource type="Gradient" id="Gradient_obal6"]
 interpolation_mode = 1

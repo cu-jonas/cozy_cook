@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://0rgoslwspiir"]
 
 [ext_resource type="Texture2D" uid="uid://b7rhtttevhxtj" path="res://characters/ground_shadow.png" id="1_nnvrw"]
-[ext_resource type="Texture2D" uid="uid://caqfk2xng5v5u" path="res://trees/pine_tree.png" id="2_gvmkm"]
+[ext_resource type="Texture2D" uid="uid://caqfk2xng5v5u" path="res://environment/trees/pine_tree.png" id="2_gvmkm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d2g23"]
 radius = 23.0868

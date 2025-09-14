@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://sixfqsom77do"]
 
 [ext_resource type="Script" uid="uid://dmnpsxvjpg7lh" path="res://game.gd" id="1_fc0e3"]
-[ext_resource type="PackedScene" uid="uid://0rgoslwspiir" path="res://trees/tree.tscn" id="2_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://0rgoslwspiir" path="res://environment/trees/tree.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://xwqhwh8tyog6" path="res://characters/player_cat/player_cat.tscn" id="2_fc0e3"]
 [ext_resource type="FontFile" uid="uid://bmfccjxytgkd6" path="res://characters/glyphy/sixtyfour.ttf" id="4_fc0e3"]
 [ext_resource type="Script" uid="uid://cogj2j2ytmac8" path="res://goal_world.gd" id="5_7jktm"]
