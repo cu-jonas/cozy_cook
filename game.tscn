@@ -11,7 +11,7 @@
 [sub_resource type="Gradient" id="Gradient_7jktm"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0.217742, 0.994624)
-colors = PackedColorArray(0, 0, 0, 1, 0.787371, 0.920418, 0.677945, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.760784, 0.909804, 0.941176, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ryrav"]
 gradient = SubResource("Gradient_7jktm")
@@ -19,11 +19,13 @@ gradient = SubResource("Gradient_7jktm")
 [sub_resource type="Environment" id="Environment_7jktm"]
 background_mode = 3
 background_color = Color(0.69856, 0.539672, 0.798215, 1)
-background_energy_multiplier = 3.0
+background_energy_multiplier = 8.18
 reflected_light_source = 1
 glow_enabled = true
-glow_intensity = 0.24
-glow_hdr_threshold = 0.4
+glow_intensity = 0.43
+glow_hdr_threshold = 0.71
+glow_hdr_scale = 0.61
+glow_hdr_luminance_cap = 0.2
 fog_mode = 1
 fog_light_color = Color(0.620215, 0.398984, 0.980009, 1)
 fog_light_energy = 1.77
@@ -47,7 +49,7 @@ _data = {
 point_count = 5
 
 [node name="Game" type="Node2D"]
-modulate = Color(0.277528, 0.277528, 0.277528, 1)
+modulate = Color(0.266575, 0.266575, 0.266575, 1)
 y_sort_enabled = true
 script = ExtResource("1_fc0e3")
 

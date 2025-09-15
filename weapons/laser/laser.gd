@@ -8,9 +8,10 @@ extends Area2D
 @onready var line_2d: Line2D = %Line2D
 @onready var line_width := line_2d.width
 @onready var collision_circle : CircleShape2D = %CollisionShape2D.shape
-#@onready var casting_particles: GPUParticles2D = %CastingParticles2D
-#@onready var collision_particles: GPUParticles2D = %CollisionParticles2D
-#@onready var beam_particles: GPUParticles2D = %BeamParticles2D
+@onready var casting_particles: GPUParticles2D = %CastingParticles2D
+@onready var collision_particles: GPUParticles2D = %CollisionParticles2D
+@onready var beam_particles: GPUParticles2D = %BeamParticles2D
+@onready var collision_light: PointLight2D = %CollisionLight
 
 var tween: Tween = null
 var laser_active := false
@@ -18,6 +19,9 @@ var current_target : Mob
 
 func _ready() -> void:
 	set_length(max_length)
+	casting_particles.position = %Line2D.points[0]
+	beam_particles.position = %Line2D.points[0]
+	collision_light.visible = false
 	%Line2D.visible = false
 
 func _physics_process(delta: float) -> void:
@@ -48,10 +52,18 @@ func _physics_process(delta: float) -> void:
 		%RayCast2D.target_position = Vector2.ZERO
 		return
 
+	
 	var local_target = %RayCast2D.to_local(target_enemy.global_position)
+
+
+	
+	
 
 	%RayCast2D.target_position = local_target
 	%RayCast2D.force_raycast_update()
+
+
+	
 
 	# Compute the line end in THIS node's local space
 	var end_local: Vector2 = local_target
@@ -60,7 +72,25 @@ func _physics_process(delta: float) -> void:
 		if target_enemy is Mob:
 			current_target = target_enemy
 			target_enemy.take_damage(dps * delta)
+			collision_particles.position = end_local
+			collision_particles.emitting = true
+			collision_light.visible = true
+			
+	else:
+		collision_particles.emitting = false
+		collision_light.visible = false
+	
+	# make the casting particles face the direction of the end_local
+	var dir_local: Vector2 = end_local - %Line2D.points[0]
+	if dir_local.length_squared() > 0.0001:
+		casting_particles.rotation = dir_local.angle()
+		
+		beam_particles.rotation = dir_local.angle()
+		beam_particles.emitting = true
 
+		beam_particles.process_material.emission_shape_offset.x = end_local.distance_to(%Line2D.points[0]) * 0.5
+		beam_particles.process_material.emission_box_extents.x = end_local.distance_to(%Line2D.points[0]) * 0.5
+		
 	appear()
 	%Line2D.points[1] = end_local
 
@@ -80,6 +110,9 @@ func appear() -> void:
 		return
 	laser_active = true
 	
+	casting_particles.emitting = true
+	
+	
 	if tween and tween.is_running():
 		tween.kill()
 	tween = create_tween()
@@ -90,6 +123,12 @@ func disappear() -> void:
 	if laser_active == false:
 		return
 	laser_active = false
+	
+	collision_light.visible = false
+	
+	casting_particles.emitting = false
+	beam_particles.emitting = false
+	collision_particles.emitting = false
 	
 	if tween and tween.is_running():
 		tween.kill()

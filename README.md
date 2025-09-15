@@ -27,6 +27,7 @@ This is Cozy Cook! A game I started to learn GoDot and as an example for teachin
 9/14 - Lightning adjustments - 15 minutes  
 9/14 - Added Screen Shake from https://github.com/theshaggydev/the-shaggy-dev-projects/blob/main/projects/godot-3/screen-shake/sample_scene.gd - 15 minutes  
 9/14 - Added more audio polish and adjustments - 30 minutes  
+9/14 - Added particle effects to laser - 1 hour
 
 ## Assets
 - GDQuest Tutorial - https://www.gdquest.com/library/first_2d_game_godot4_vampire_survivor/
