@@ -41,7 +41,7 @@ bus = &"SFX"
 
 [node name="PlayerLevelUp" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("5_jewxp")
-volume_db = -29.154
+volume_db = -38.523
 bus = &"SFX"
 
 [node name="PlayerBullet" type="AudioStreamPlayer" parent="Sfx"]
@@ -52,13 +52,13 @@ bus = &"SFX"
 
 [node name="EnemyDie" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("6_cf61m")
-volume_db = -13.867
+volume_db = -22.299
 max_polyphony = 5
 bus = &"SFX"
 
 [node name="EnemyHit" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("7_dgn74")
-volume_db = -8.157
+volume_db = -12.842
 max_polyphony = 5
 bus = &"SFX"
 
@@ -81,5 +81,5 @@ bus = &"SFX"
 
 [node name="LetterFound" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("12_74rsu")
-volume_db = -15.46
+volume_db = -24.361
 bus = &"SFX"
