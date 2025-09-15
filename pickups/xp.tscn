@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://c4y3fsqpd13nj"]
 
-[ext_resource type="Script" uid="uid://dj3hbjdyo12h3" path="res://pickups/xp_pickup.gd" id="1_jcp38"]
-[ext_resource type="Texture2D" uid="uid://cen7vkquewx5a" path="res://pickups/gem02blue.png" id="2_8jb4b"]
+[ext_resource type="Script" uid="uid://sdldtk6tgf7f" path="res://pickups/pickup.gd" id="1_yn4yt"]
+[ext_resource type="Texture2D" uid="uid://cen7vkquewx5a" path="res://pickups/gem02blue.png" id="2_a5h7w"]
 
 [sub_resource type="Gradient" id="Gradient_jcp38"]
 offsets = PackedFloat32Array(0, 0.290816)
@@ -79,7 +79,7 @@ _data = {
 
 [node name="XP_Pickup" type="Area2D"]
 scale = Vector2(2, 2)
-script = ExtResource("1_jcp38")
+script = ExtResource("1_yn4yt")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(5, 5)
@@ -91,7 +91,7 @@ shape = SubResource("CircleShape2D_77g8h")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
 scale = Vector2(2, 2)
-texture = ExtResource("2_8jb4b")
+texture = ExtResource("2_a5h7w")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 unique_name_in_owner = true

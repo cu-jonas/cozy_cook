@@ -16,7 +16,7 @@ func start_level(word : String):
 	
 	# remove existing mobs:
 	for child in get_children():
-		if child is Mob or child is XpPickup or child is SoupPickup:
+		if child is Mob or child is Pickup:
 			child.queue_free()	
 	
 	# populate initial mobs

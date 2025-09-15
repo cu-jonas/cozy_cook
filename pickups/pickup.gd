@@ -1,13 +1,17 @@
 extends Area2D
-class_name SoupPickup
+class_name Pickup
+
+@export var pickup_type := "xp" 
+@export var pickup_value := 1
+@export var pickup_sound := "CollectXP"
 
 func _ready() -> void:
 	%AnimationPlayer.play("wobble")
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.has_method("collect_soup"):
+	if body.has_method("collect_pickup"):
 		AudioManager.play_xp_sfx()
-		body.collect_soup(5)
+		body.collect_pickup(pickup_type,pickup_value)
 		queue_free() # remove the xp node
 
 func _on_expiration_timeout() -> void:

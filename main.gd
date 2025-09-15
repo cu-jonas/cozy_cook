@@ -53,6 +53,8 @@ func _on_game_level_won() -> void:
 	elif level_index == 2:
 		%PumpkinImage.visible = true
 	
+	%CompletedLabel.text = "Completed " + words[level_index] + "!"
+	
 	level_index += 1
 	
 	if level_index < words.size():
