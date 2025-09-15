@@ -1,10 +1,46 @@
-[gd_scene load_steps=8 format=3 uid="uid://sixfqsom77do"]
+[gd_scene load_steps=12 format=3 uid="uid://sixfqsom77do"]
 
-[ext_resource type="Script" uid="uid://dmnpsxvjpg7lh" path="res://game/game.gd" id="1_fc0e3"]
-[ext_resource type="PackedScene" uid="uid://0rgoslwspiir" path="res://trees/tree.tscn" id="2_e2o6t"]
+[ext_resource type="Script" uid="uid://dmnpsxvjpg7lh" path="res://game.gd" id="1_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://0rgoslwspiir" path="res://environment/trees/tree.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://xwqhwh8tyog6" path="res://characters/player_cat/player_cat.tscn" id="2_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://cwcv74fqln3cj" path="res://environment/green_forest.tscn" id="2_ryrav"]
 [ext_resource type="FontFile" uid="uid://bmfccjxytgkd6" path="res://characters/glyphy/sixtyfour.ttf" id="4_fc0e3"]
-[ext_resource type="Script" uid="uid://cogj2j2ytmac8" path="res://game/goal_world.gd" id="5_7jktm"]
+[ext_resource type="Script" uid="uid://cogj2j2ytmac8" path="res://goal_world.gd" id="5_7jktm"]
+[ext_resource type="Script" uid="uid://cok7j5tbs3gmd" path="res://environment/camera_2d.gd" id="7_eow3j"]
+
+[sub_resource type="Gradient" id="Gradient_7jktm"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.217742, 0.994624)
+colors = PackedColorArray(0, 0, 0, 0, 0.760784, 0.909804, 0.941176, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ryrav"]
+gradient = SubResource("Gradient_7jktm")
+
+[sub_resource type="Environment" id="Environment_7jktm"]
+background_mode = 3
+background_color = Color(0.69856, 0.539672, 0.798215, 1)
+background_energy_multiplier = 8.18
+reflected_light_source = 1
+glow_enabled = true
+glow_intensity = 0.43
+glow_hdr_threshold = 0.71
+glow_hdr_scale = 0.61
+glow_hdr_luminance_cap = 0.2
+fog_mode = 1
+fog_light_color = Color(0.620215, 0.398984, 0.980009, 1)
+fog_light_energy = 1.77
+fog_sun_scatter = 0.5
+fog_density = 1.0
+fog_height = 14.12
+fog_height_density = 0.8828
+fog_depth_curve = 1.1487
+fog_depth_begin = 97.3
+fog_depth_end = 257.2
+adjustment_enabled = true
+adjustment_brightness = 1.2
+adjustment_contrast = 0.85
+adjustment_saturation = 0.63
+adjustment_color_correction = SubResource("GradientTexture1D_ryrav")
 
 [sub_resource type="Curve2D" id="Curve2D_7jktm"]
 _data = {
@@ -12,30 +48,24 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7jktm"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0.116741, 0.116741, 0.116741, 0.639216)
-
 [node name="Game" type="Node2D"]
+modulate = Color(0.266575, 0.266575, 0.266575, 1)
 y_sort_enabled = true
 script = ExtResource("1_fc0e3")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -10
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7jktm")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_left = 7.0
-offset_top = 4.0
-offset_right = 1909.0
-offset_bottom = 1082.0
-color = Color(0.314266, 0.473985, 0.171756, 1)
+[node name="TileMapLayer" parent="." instance=ExtResource("2_ryrav")]
 
 [node name="CatPlayer" parent="." instance=ExtResource("2_fc0e3")]
 unique_name_in_owner = true
-position = Vector2(938, 566)
+
+[node name="Camera2D" type="Camera2D" parent="CatPlayer"]
+unique_name_in_owner = true
+script = ExtResource("7_eow3j")
+RANDOM_SHAKE_STRENGTH = 5.0
+SHAKE_DECAY_RATE = 2.0
 
 [node name="Path2D" type="Path2D" parent="CatPlayer"]
 curve = SubResource("Curve2D_7jktm")
@@ -63,32 +93,45 @@ autostart = true
 
 [node name="PlayerHUD" type="CanvasLayer" parent="."]
 
-[node name="TopRight" type="PanelContainer" parent="PlayerHUD"]
+[node name="PlayerLevel" type="Control" parent="PlayerHUD"]
+layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -58.0
+offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_7jktm")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PlayerHUD/TopRight"]
+[node name="TopRight" type="PanelContainer" parent="PlayerHUD/PlayerLevel"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -390.0
+offset_top = 50.0
+offset_right = -90.0
+offset_bottom = 150.0
+grow_horizontal = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerHUD/PlayerLevel/TopRight"]
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="Label_PlayerLevel" type="Label" parent="PlayerHUD/TopRight/VBoxContainer"]
+[node name="Label_PlayerLevel" type="Label" parent="PlayerHUD/PlayerLevel/TopRight/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_fc0e3")
 theme_override_font_sizes/font_size = 32
 text = "Level: 1"
 
-[node name="Progress_PlayerXP" type="ProgressBar" parent="PlayerHUD/TopRight/VBoxContainer"]
+[node name="Progress_PlayerXP" type="ProgressBar" parent="PlayerHUD/PlayerLevel/TopRight/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PlayerHUD"]
+[node name="BottomObjective" type="Control" parent="PlayerHUD"]
+layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -100,7 +143,19 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="GoalWord" type="RichTextLabel" parent="PlayerHUD/PanelContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="PlayerHUD/BottomObjective"]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 25.0
+grow_horizontal = 2
+
+[node name="GoalWord" type="RichTextLabel" parent="PlayerHUD/BottomObjective/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("4_fc0e3")
@@ -117,4 +172,4 @@ script = ExtResource("5_7jktm")
 [connection signal="level_up" from="CatPlayer" to="." method="_on_cat_player_level_up"]
 [connection signal="xp_earned" from="CatPlayer" to="." method="_on_cat_player_xp_earned"]
 [connection signal="timeout" from="Timer" to="." method="spawn_mob"]
-[connection signal="word_completed" from="PlayerHUD/PanelContainer/GoalWord" to="." method="_on_goal_world_word_completed"]
+[connection signal="word_completed" from="PlayerHUD/BottomObjective/PanelContainer/GoalWord" to="." method="_on_goal_world_word_completed"]

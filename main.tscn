@@ -51,7 +51,7 @@ grow_vertical = 2
 
 [node name="Label2" type="Label" parent="GameOver/ColorRect/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 128
+theme_override_font_sizes/font_size = 64
 text = "LEVEL FAILED :-("
 
 [node name="RetryLevelButton" type="Button" parent="GameOver/ColorRect/VBoxContainer"]
@@ -93,7 +93,7 @@ layout_mode = 2
 [node name="CompletedLabel" type="Label" parent="LevelComplete/ColorRect/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 128
+theme_override_font_sizes/font_size = 64
 text = "Completed Recipe"
 
 [node name="SoupImage" type="TextureRect" parent="LevelComplete/ColorRect/PanelContainer/VBoxContainer"]
@@ -130,7 +130,6 @@ text = "Next Stage"
 
 [node name="GameWon" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="GameWon"]
 anchors_preset = 15
@@ -159,7 +158,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="GameWon/ColorRect/PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 128
+theme_override_font_sizes/font_size = 64
 text = "You Win! :-)"
 
 [node name="RestartGameButton" type="Button" parent="GameWon/ColorRect/PanelContainer/VBoxContainer"]

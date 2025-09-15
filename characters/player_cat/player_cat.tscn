@@ -2,10 +2,21 @@
 
 [ext_resource type="Script" uid="uid://cayi4d37mhgto" path="res://characters/player_cat/player_cat.gd" id="1_mk5fp"]
 [ext_resource type="SpriteFrames" uid="uid://tg5lu6a4yqcp" path="res://characters/player_cat/cat_frames.tres" id="3_ht42k"]
-[ext_resource type="PackedScene" uid="uid://dib33o0j2vmc5" path="res://pistol/weapon.tscn" id="3_m4gtg"]
 [ext_resource type="Script" uid="uid://dlf5vi7esjhw1" path="res://characters/player_cat/animated_cat.gd" id="4_sjkqh"]
-[ext_resource type="AudioStream" uid="uid://cd1y035s8crbo" path="res://audio/sfx/take_damage.wav" id="5_sjkqh"]
-[ext_resource type="AudioStream" uid="uid://c47s2o2n5jfri" path="res://audio/sfx/death.wav" id="6_idf8u"]
+[ext_resource type="PackedScene" uid="uid://84srdy68exyj" path="res://weapons/laser/laser.tscn" id="5_6vay5"]
+
+[sub_resource type="Gradient" id="Gradient_idf8u"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.456818)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6vay5"]
+gradient = SubResource("Gradient_idf8u")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
 
 [sub_resource type="Animation" id="Animation_sjkqh"]
 length = 0.001
@@ -33,7 +44,7 @@ tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.233333, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"transitions": PackedFloat32Array(1, -2, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
 }
@@ -52,6 +63,12 @@ radius = 34.0147
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3pqv"]
 bg_color = Color(0.152941, 0.168627, 0.188235, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -59,6 +76,12 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqtel"]
 bg_color = Color(0.623529, 0.866667, 0.317647, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -67,12 +90,21 @@ corner_radius_bottom_left = 10
 [node name="PlayerCat" type="CharacterBody2D"]
 script = ExtResource("1_mk5fp")
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -33)
+rotation = 3.14159
+scale = Vector2(10, 10)
+color = Color(0.766013, 0.946872, 0.58739, 1)
+energy = 3.46
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_6vay5")
+
 [node name="AnimatedCat" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, -28.34)
 scale = Vector2(4, 4)
 sprite_frames = ExtResource("3_ht42k")
-animation = &"idle_left"
+animation = &"idle_right"
 script = ExtResource("4_sjkqh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedCat"]
@@ -85,11 +117,9 @@ libraries = {
 position = Vector2(0, -32)
 shape = SubResource("CircleShape2D_onrkg")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Weapon" parent="." instance=ExtResource("3_m4gtg")]
+[node name="Laser" parent="." instance=ExtResource("5_6vay5")]
 unique_name_in_owner = true
-position = Vector2(0, -31)
+position = Vector2(0, -35)
 
 [node name="HurtBox" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -101,32 +131,28 @@ position = Vector2(0, -30)
 shape = SubResource("CircleShape2D_i3pqv")
 debug_color = Color(0.790415, 0.0759102, 3.85046e-07, 0.419608)
 
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
 unique_name_in_owner = true
+light_mask = 0
+visibility_layer = 2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -50.0
-offset_top = -89.275
+offset_top = -129.0
 offset_right = 50.0
-offset_bottom = -69.275
+offset_bottom = -109.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_i3pqv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_hqtel")
-value = 100.0
+value = 50.0
 show_percentage = false
-
-[node name="AudioHitSound" type="AudioStreamPlayer2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(0, -28.34)
-scale = Vector2(4, 4)
-stream = ExtResource("5_sjkqh")
-
-[node name="AudioDeathSound" type="AudioStreamPlayer2D" parent="."]
-unique_name_in_owner = true
-stream = ExtResource("6_idf8u")
 
 [connection signal="level_up" from="." to="." method="_on_level_up"]

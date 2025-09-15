@@ -81,7 +81,7 @@ config/icon="res://assets/icon.png"
 
 [audio]
 
-buses/default_bus_layout="res://audio/default_bus_layout.tres"
+buses/default_bus_layout="uid://c0r1synmqj70v"
 
 [autoload]
 
@@ -107,6 +107,10 @@ enabled=PackedStringArray("res://addons/colorpicker_presets/plugin.cfg")
 folder_colors={
 "res://builds/": "red"
 }
+
+[gui]
+
+theme/custom="uid://ds21fnoaxeym8"
 
 [input]
 

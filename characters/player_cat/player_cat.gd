@@ -7,9 +7,11 @@ var xp_requirements: Array = [
 	3,5,10,15
 ]
 
-var weapon_speed: Array = [
-	.5, .4, .3, .2, .1, .05
+var weapon_dps: Array = [
+	100, 150, 200, 250, 300, 350
 ]
+
+var character_scale: Array = [ 1.0, 1.2, 1.35, 1.45, 1.5, 1.55]
 
 signal health_depleted
 signal level_up
@@ -60,8 +62,8 @@ func _check_level_up():
 	
 func _on_level_up() -> void:
 		AudioManager.play_sfx("PlayerLevelUp", 0, true)
-		scale = Vector2.ONE * (1.0 + (float(level) / 5.0))
-		%Weapon.set_weapon_cooldown(weapon_speed[level])
+		scale = Vector2.ONE * character_scale[level - 1]
+		%Laser.set_laser_damage(weapon_dps[level - 1])
 
 func get_xp_progress() -> float:
 	if level - 1 >= xp_requirements.size():
@@ -85,8 +87,8 @@ func reset_player():
 	%HealthBar.value = health
 	
 	# Reset weapon cooldown
-	if weapon_speed.size() > 0:
-		%Weapon.set_weapon_cooldown(weapon_speed[0])
+	if weapon_dps.size() > 0:
+		%Laser.set_laser_damage(weapon_dps[level - 1])
 	
 	# Reset XP bar (emit so UI updates if bound)
 	xp_earned.emit()

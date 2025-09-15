@@ -3,20 +3,22 @@ extends Node
 var level_index = 0
 var words : Array = [ 'SOUP', 'CARROT', 'PUMPKIN']
 
-
 func _ready() -> void:
 	Globals.CatGame = %Game
 	_start_level()
 	
 func _on_next_level_button_pressed() -> void:
+	AudioManager.button_click()
 	_start_level()
 
 func _on_restart_game_button_pressed() -> void:
+	AudioManager.button_click()
 	level_index = 0
 	%Game.reset_game()
 	_start_level()
 
 func _on_retry_level_button_pressed() -> void:
+	AudioManager.button_click()
 	_start_level()
 
 func _start_level():
@@ -34,6 +36,9 @@ func _on_game_level_fail() -> void:
 
 
 func _on_game_level_won() -> void:
+	
+	AudioManager.play_sfx("LevelComplete")
+	
 	%Game.get_tree().paused = true
 	
 	# this is a really bad way to do this, but it works!

@@ -28,3 +28,7 @@ func play_xp_sfx():
 	if xp_index >= pitch_array.size():
 		xp_index = 0
 	
+func button_click():
+	active_sfx = %Sfx.get_node("ButtonClick")
+	active_sfx.play()
+	active_sfx.pitch_scale = pitch_array[randi() % 5]

@@ -1,14 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://qkarf1v8vtjn"]
+[gd_scene load_steps=13 format=3 uid="uid://qkarf1v8vtjn"]
 
 [ext_resource type="Script" uid="uid://dwg4gler02usf" path="res://audio/audio_manager.gd" id="1_pwwtb"]
 [ext_resource type="AudioStream" uid="uid://n8ttegf6p2g1" path="res://audio/music/Wanderers Tale.ogg" id="2_ngew5"]
 [ext_resource type="AudioStream" uid="uid://cd1y035s8crbo" path="res://audio/sfx/take_damage.wav" id="3_ecn5r"]
-[ext_resource type="AudioStream" uid="uid://c47s2o2n5jfri" path="res://audio/sfx/death.wav" id="4_hdtnj"]
+[ext_resource type="AudioStream" uid="uid://cpxmeas8rravs" path="res://audio/sfx/game_over.wav" id="4_sm7jd"]
 [ext_resource type="AudioStream" uid="uid://dxudj78s3547l" path="res://audio/sfx/player_bullet.ogg" id="5_hdtnj"]
 [ext_resource type="AudioStream" uid="uid://c081ewj0c7d40" path="res://audio/sfx/level_up.wav" id="5_jewxp"]
 [ext_resource type="AudioStream" uid="uid://ciavsxltb1b8t" path="res://audio/sfx/enemy_die.ogg" id="6_cf61m"]
 [ext_resource type="AudioStream" uid="uid://bavks4mglwek4" path="res://audio/sfx/enemy_hit.ogg" id="7_dgn74"]
 [ext_resource type="AudioStream" uid="uid://cbns8cjpvs68i" path="res://audio/sfx/collect_xp.ogg" id="8_cebw5"]
+[ext_resource type="AudioStream" uid="uid://dpfqp47xkxkw2" path="res://audio/sfx/button_click.ogg" id="10_h6j6i"]
+[ext_resource type="AudioStream" uid="uid://bv1i33mt0xct3" path="res://audio/sfx/level_complete.wav" id="11_sm7jd"]
+[ext_resource type="AudioStream" uid="uid://yksgc74obn7u" path="res://audio/sfx/wow.wav" id="12_74rsu"]
 
 [node name="AudioManager" type="Node"]
 process_mode = 3
@@ -19,6 +22,8 @@ unique_name_in_owner = true
 
 [node name="Main" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("2_ngew5")
+volume_db = -8.901
+bus = &"Music"
 parameters/looping = true
 
 [node name="Sfx" type="Node" parent="."]
@@ -26,29 +31,55 @@ unique_name_in_owner = true
 
 [node name="PlayerHurt" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("3_ecn5r")
+volume_db = -7.027
+bus = &"SFX"
 
 [node name="PlayerDeath" type="AudioStreamPlayer" parent="Sfx"]
-stream = ExtResource("4_hdtnj")
+stream = ExtResource("4_sm7jd")
+volume_db = -19.207
+bus = &"SFX"
 
 [node name="PlayerLevelUp" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("5_jewxp")
+volume_db = -29.154
+bus = &"SFX"
 
 [node name="PlayerBullet" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("5_hdtnj")
 volume_db = -20.8
 max_polyphony = 10
+bus = &"SFX"
 
 [node name="EnemyDie" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("6_cf61m")
 volume_db = -13.867
 max_polyphony = 5
+bus = &"SFX"
 
 [node name="EnemyHit" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("7_dgn74")
 volume_db = -8.157
 max_polyphony = 5
+bus = &"SFX"
 
 [node name="CollectXP" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource("8_cebw5")
 volume_db = -8.157
 max_polyphony = 5
+bus = &"SFX"
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("10_h6j6i")
+volume_db = 3.554
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="LevelComplete" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("11_sm7jd")
+volume_db = -9.37
+bus = &"SFX"
+
+[node name="LetterFound" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("12_74rsu")
+volume_db = -15.46
+bus = &"SFX"
