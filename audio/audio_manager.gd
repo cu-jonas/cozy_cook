@@ -31,4 +31,4 @@ func play_xp_sfx():
 func button_click():
 	active_sfx = %Sfx.get_node("ButtonClick")
 	active_sfx.play()
-	active_sfx.pitch_scale = pitch_array[randi() % 6]
+	active_sfx.pitch_scale = pitch_array[randi() % 5]

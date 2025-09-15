@@ -1,11 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://xwqhwh8tyog6"]
+[gd_scene load_steps=14 format=3 uid="uid://xwqhwh8tyog6"]
 
 [ext_resource type="Script" uid="uid://cayi4d37mhgto" path="res://characters/player_cat/player_cat.gd" id="1_mk5fp"]
 [ext_resource type="SpriteFrames" uid="uid://tg5lu6a4yqcp" path="res://characters/player_cat/cat_frames.tres" id="3_ht42k"]
 [ext_resource type="Script" uid="uid://dlf5vi7esjhw1" path="res://characters/player_cat/animated_cat.gd" id="4_sjkqh"]
 [ext_resource type="PackedScene" uid="uid://84srdy68exyj" path="res://weapons/laser/laser.tscn" id="5_6vay5"]
-[ext_resource type="AudioStream" uid="uid://cd1y035s8crbo" path="res://audio/sfx/take_damage.wav" id="5_sjkqh"]
-[ext_resource type="AudioStream" uid="uid://c47s2o2n5jfri" path="res://audio/sfx/death.wav" id="6_idf8u"]
 
 [sub_resource type="Gradient" id="Gradient_idf8u"]
 interpolation_mode = 2
@@ -132,16 +130,6 @@ collision_mask = 2
 position = Vector2(0, -30)
 shape = SubResource("CircleShape2D_i3pqv")
 debug_color = Color(0.790415, 0.0759102, 3.85046e-07, 0.419608)
-
-[node name="AudioHitSound" type="AudioStreamPlayer2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(0, -28.34)
-scale = Vector2(4, 4)
-stream = ExtResource("5_sjkqh")
-
-[node name="AudioDeathSound" type="AudioStreamPlayer2D" parent="."]
-unique_name_in_owner = true
-stream = ExtResource("6_idf8u")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
