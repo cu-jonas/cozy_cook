@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://sixfqsom77do"]
 
-[ext_resource type="Script" uid="uid://dmnpsxvjpg7lh" path="res://game.gd" id="1_fc0e3"]
+[ext_resource type="Script" uid="uid://dmnpsxvjpg7lh" path="res://game/game.gd" id="1_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://0rgoslwspiir" path="res://environment/trees/tree.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://xwqhwh8tyog6" path="res://characters/player_cat/player_cat.tscn" id="2_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://cwcv74fqln3cj" path="res://environment/green_forest.tscn" id="2_ryrav"]
 [ext_resource type="FontFile" uid="uid://bmfccjxytgkd6" path="res://characters/glyphy/sixtyfour.ttf" id="4_fc0e3"]
-[ext_resource type="Script" uid="uid://cogj2j2ytmac8" path="res://goal_world.gd" id="5_7jktm"]
+[ext_resource type="Script" uid="uid://cogj2j2ytmac8" path="res://game/goal_world.gd" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://cok7j5tbs3gmd" path="res://environment/camera_2d.gd" id="7_eow3j"]
 
 [sub_resource type="Gradient" id="Gradient_7jktm"]
