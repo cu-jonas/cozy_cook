@@ -13,6 +13,8 @@ script = ExtResource("1_nokgg")
 
 [node name="Glyphy" parent="." instance=ExtResource("3_w34ve")]
 unique_name_in_owner = true
+scale = Vector2(0.5, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_nokgg")

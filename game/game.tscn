@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://sixfqsom77do"]
+[gd_scene load_steps=13 format=3 uid="uid://sixfqsom77do"]
 
 [ext_resource type="Script" uid="uid://dmnpsxvjpg7lh" path="res://game/game.gd" id="1_fc0e3"]
-[ext_resource type="PackedScene" uid="uid://0rgoslwspiir" path="res://environment/trees/tree.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://xwqhwh8tyog6" path="res://characters/player_cat/player_cat.tscn" id="2_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://cwcv74fqln3cj" path="res://environment/green_forest.tscn" id="2_ryrav"]
+[ext_resource type="Script" uid="uid://fyqpsd4pt6sm" path="res://game/level_manager.gd" id="2_y36n6"]
+[ext_resource type="PackedScene" uid="uid://bidw22hr4x72o" path="res://environment/Level1.tscn" id="3_y36n6"]
 [ext_resource type="FontFile" uid="uid://bmfccjxytgkd6" path="res://characters/glyphy/sixtyfour.ttf" id="4_fc0e3"]
 [ext_resource type="Script" uid="uid://cogj2j2ytmac8" path="res://game/goal_world.gd" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://cok7j5tbs3gmd" path="res://environment/camera_2d.gd" id="7_eow3j"]
@@ -56,7 +57,16 @@ script = ExtResource("1_fc0e3")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7jktm")
 
-[node name="TileMapLayer" parent="." instance=ExtResource("2_ryrav")]
+[node name="LevelManager" type="Node2D" parent="."]
+unique_name_in_owner = true
+z_index = -1
+script = ExtResource("2_y36n6")
+
+[node name="TileMapLayer" parent="LevelManager" instance=ExtResource("2_ryrav")]
+visible = false
+
+[node name="Level1" parent="LevelManager" instance=ExtResource("3_y36n6")]
+scale = Vector2(10, 10)
 
 [node name="CatPlayer" parent="." instance=ExtResource("2_fc0e3")]
 unique_name_in_owner = true
@@ -74,18 +84,6 @@ curve = SubResource("Curve2D_7jktm")
 unique_name_in_owner = true
 position = Vector2(-1016, -598)
 rotation = -0.055421
-
-[node name="Tree" parent="." instance=ExtResource("2_e2o6t")]
-position = Vector2(340, 287)
-
-[node name="Tree2" parent="." instance=ExtResource("2_e2o6t")]
-position = Vector2(1386, 225)
-
-[node name="Tree3" parent="." instance=ExtResource("2_e2o6t")]
-position = Vector2(520, 667)
-
-[node name="Tree4" parent="." instance=ExtResource("2_e2o6t")]
-position = Vector2(1348, 736)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

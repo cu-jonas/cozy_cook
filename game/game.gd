@@ -9,6 +9,7 @@ signal level_won
 var unlocked_words : Array
 var current_word : String
 
+
 func reset_game():
 	unlocked_words = []
 
@@ -28,6 +29,9 @@ func start_level(word : String):
 	_on_cat_player_xp_earned()
 	current_word = word
 	%GoalWord.set_word(current_word)
+	
+	
+	%CatPlayer.global_position = %LevelManager.get_player_spawn_location()
 
 func spawn_mob():
 	var new_mob = preload("res://characters/mob/mob.tscn").instantiate()
