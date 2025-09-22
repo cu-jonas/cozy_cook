@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://g5th1mr1aown"]
+
+[ext_resource type="Script" uid="uid://daqqencgplkd2" path="res://level_components/enemy_trigger_spawner.gd" id="1_wcurj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1ff4"]
+size = Vector2(48, 19.5)
+
+[node name="EnemyTriggerSpawner" type="Node2D"]
+script = ExtResource("1_wcurj")
+
+[node name="EventTrigger" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EventTrigger"]
+position = Vector2(25, 288)
+shape = SubResource("RectangleShape2D_g1ff4")
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(25, 298)
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="body_entered" from="EventTrigger" to="." method="_on_event_trigger_body_entered"]
+[connection signal="body_exited" from="EventTrigger" to="." method="_on_event_trigger_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

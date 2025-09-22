@@ -34,10 +34,10 @@ func start_level(word : String):
 	%CatPlayer.global_position = %LevelManager.get_player_spawn_location()
 
 func spawn_mob():
+	return # remove this for now, controlled by level instead
 	var new_mob = preload("res://characters/mob/mob.tscn").instantiate()
 	%PathFollow2D.progress_ratio = randf()
 	new_mob.global_position = %PathFollow2D.global_position
-	new_mob.mob_defeated.connect(mob_killed)
 	add_child(new_mob)
 
 func mob_killed(letter: String):

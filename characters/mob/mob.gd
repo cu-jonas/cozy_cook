@@ -9,6 +9,11 @@ signal mob_defeated
 
 func _ready():
 	%Glyphy.play_walk()
+	
+	print('spawning mob')
+	
+	# register the defeated with the game
+	mob_defeated.connect(Globals.CatGame.mob_killed)
 
 func _physics_process(_delta: float):
 	if player:

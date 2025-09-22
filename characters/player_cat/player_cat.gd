@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 var health = 100.0
 var xp = 0
 var level = 1
