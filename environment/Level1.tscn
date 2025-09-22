@@ -1,8 +1,18 @@
-[gd_scene load_steps=4 format=4 uid="uid://bidw22hr4x72o"]
+[gd_scene load_steps=6 format=4 uid="uid://bidw22hr4x72o"]
 
 [ext_resource type="TileSet" uid="uid://bvcu7h5ajtan7" path="res://environment/tilesets/grass_tileset.tres" id="1_ehrdc"]
 [ext_resource type="PackedScene" uid="uid://0rgoslwspiir" path="res://environment/trees/tree.tscn" id="2_pvdrr"]
 [ext_resource type="PackedScene" uid="uid://g5th1mr1aown" path="res://level_components/enemy_trigger_spawner.tscn" id="3_m3ok1"]
+
+[sub_resource type="Gradient" id="Gradient_m3ok1"]
+offsets = PackedFloat32Array(0.204444, 0.653333)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_og54w"]
+gradient = SubResource("Gradient_m3ok1")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Level1" type="Node2D"]
 
@@ -48,5 +58,20 @@ position = Vector2(24, 292.75)
 
 [node name="SpawnPoint" parent="Objects/EnemyTriggerSpawner" index="1"]
 position = Vector2(24, 250)
+
+[node name="Lights" type="Node2D" parent="Objects"]
+
+[node name="TriggerLights" type="Node2D" parent="Objects/Lights"]
+visible = false
+
+[node name="PointLight2D" type="PointLight2D" parent="Objects/Lights/TriggerLights"]
+position = Vector2(23, 293)
+scale = Vector2(4.28, 4.55318)
+color = Color(0.668953, 3.03224e-06, 4.33177e-07, 1)
+energy = 3.0
+texture = SubResource("GradientTexture2D_og54w")
+
+[connection signal="player_entered" from="Objects/EnemyTriggerSpawner" to="Objects/Lights/TriggerLights" method="set_visible" binds= [true]]
+[connection signal="player_exited" from="Objects/EnemyTriggerSpawner" to="Objects/Lights/TriggerLights" method="set_visible" binds= [false]]
 
 [editable path="Objects/EnemyTriggerSpawner"]
