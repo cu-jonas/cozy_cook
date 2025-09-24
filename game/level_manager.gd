@@ -7,6 +7,10 @@ func _ready() -> void:
 	pass
 	
 func load_level(scene: PackedScene):
+	
+	if current_level != null:
+		current_level.queue_free()
+		
 	var level_instance = scene.instantiate()
 	current_level = level_instance
 	add_child(level_instance)

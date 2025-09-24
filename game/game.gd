@@ -19,7 +19,7 @@ func reset_game():
 func start_level(word : String):
 	
 	# remove existing mobs:
-	for child in get_children():
+	for child in get_children(true):
 		if child is Mob or child is Pickup:
 			child.queue_free()	
 	

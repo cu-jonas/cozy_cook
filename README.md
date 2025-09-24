@@ -33,6 +33,7 @@ This is Cozy Cook! A game I started to learn GoDot and as an example for teachin
 9/21 - Added tilemaps and setup collision and terrain - 3 hours
 9/22 - Added gate with collision and terrains - 30 minutes
 9/22 - Made enemy trigger spawner - 30 minutes
+9/24 - Made Glyphys have letter assignments - 30 minutes
 
 ## Assets
 - GDQuest Tutorial - https://www.gdquest.com/library/first_2d_game_godot4_vampire_survivor/
