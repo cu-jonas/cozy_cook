@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://daqqencgplkd2" path="res://level_components/enemy_trigger_spawner.gd" id="1_wcurj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1ff4"]
-size = Vector2(48, 19.5)
+size = Vector2(48, 24)
 
 [node name="EnemyTriggerSpawner" type="Node2D"]
 script = ExtResource("1_wcurj")

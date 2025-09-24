@@ -1,9 +1,10 @@
-[gd_resource type="TileSet" load_steps=10 format=3 uid="uid://bvcu7h5ajtan7"]
+[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://bvcu7h5ajtan7"]
 
 [ext_resource type="Texture2D" uid="uid://g5c2hpmbf768" path="res://environment/tilesets/Grass_Hill_Tiles_Slopes v.2.png" id="2_mkyil"]
 [ext_resource type="Texture2D" uid="uid://t1ak7is0ncip" path="res://environment/tilesets/Grass_Tile_layers2.png" id="3_oiucj"]
 [ext_resource type="Texture2D" uid="uid://cfe4mleubpie1" path="res://environment/tilesets/Grass_Hill_Tiles_v2.png" id="4_axgf0"]
 [ext_resource type="Texture2D" uid="uid://3dc6k2wqbaso" path="res://environment/tilesets/Fences.png" id="4_oiucj"]
+[ext_resource type="Texture2D" uid="uid://ciqa3fibgdar6" path="res://environment/tilesets/Trees, stumps and bushes.png" id="5_axgf0"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_gvtmm"]
 tile_data = PackedInt32Array(0, 262145, 0, 65536, 262145, 1, 131072, 262145, 2, 1, 327681, 0, 65537, 327681, 1, 131073, 327681, 2)
@@ -1041,6 +1042,77 @@ texture = ExtResource("4_oiucj")
 6:3/0 = 0
 7:3/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_br5sa"]
+texture = ExtResource("5_axgf0")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/next_alternative_id = 2
+3:0/0 = 0
+4:0/next_alternative_id = 2
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/next_alternative_id = 2
+3:1/0 = 0
+4:1/next_alternative_id = 2
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+11:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+
 [resource]
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
@@ -1056,4 +1128,5 @@ sources/1 = SubResource("TileSetAtlasSource_gvtmm")
 sources/2 = SubResource("TileSetAtlasSource_jres4")
 sources/3 = SubResource("TileSetAtlasSource_txcso")
 sources/4 = SubResource("TileSetAtlasSource_axgf0")
+sources/5 = SubResource("TileSetAtlasSource_br5sa")
 pattern_0 = SubResource("TileMapPattern_gvtmm")

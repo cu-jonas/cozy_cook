@@ -1,10 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://sixfqsom77do"]
+[gd_scene load_steps=11 format=3 uid="uid://sixfqsom77do"]
 
 [ext_resource type="Script" uid="uid://dmnpsxvjpg7lh" path="res://game/game.gd" id="1_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://xwqhwh8tyog6" path="res://characters/player_cat/player_cat.tscn" id="2_fc0e3"]
-[ext_resource type="PackedScene" uid="uid://cwcv74fqln3cj" path="res://environment/green_forest.tscn" id="2_ryrav"]
 [ext_resource type="Script" uid="uid://fyqpsd4pt6sm" path="res://game/level_manager.gd" id="2_y36n6"]
-[ext_resource type="PackedScene" uid="uid://bidw22hr4x72o" path="res://environment/Level1.tscn" id="3_y36n6"]
 [ext_resource type="FontFile" uid="uid://bmfccjxytgkd6" path="res://characters/glyphy/sixtyfour.ttf" id="4_fc0e3"]
 [ext_resource type="Script" uid="uid://cogj2j2ytmac8" path="res://game/goal_world.gd" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://cok7j5tbs3gmd" path="res://environment/camera_2d.gd" id="7_eow3j"]
@@ -61,12 +59,6 @@ environment = SubResource("Environment_7jktm")
 unique_name_in_owner = true
 z_index = -1
 script = ExtResource("2_y36n6")
-
-[node name="TileMapLayer" parent="LevelManager" instance=ExtResource("2_ryrav")]
-visible = false
-
-[node name="Level1" parent="LevelManager" instance=ExtResource("3_y36n6")]
-scale = Vector2(10, 10)
 
 [node name="CatPlayer" parent="." instance=ExtResource("2_fc0e3")]
 unique_name_in_owner = true

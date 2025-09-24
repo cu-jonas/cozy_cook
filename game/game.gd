@@ -10,6 +10,9 @@ var unlocked_words : Array
 var current_word : String
 
 
+var level1 = preload("res://environment/Level1.tscn")
+
+
 func reset_game():
 	unlocked_words = []
 
@@ -30,8 +33,12 @@ func start_level(word : String):
 	current_word = word
 	%GoalWord.set_word(current_word)
 	
-	
+	%LevelManager.load_level(level1)
+	call_deferred("_on_level_loaded")
+
+func _on_level_loaded():
 	%CatPlayer.global_position = %LevelManager.get_player_spawn_location()
+
 
 func spawn_mob():
 	return # remove this for now, controlled by level instead

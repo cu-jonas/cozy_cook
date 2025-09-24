@@ -21,4 +21,5 @@ func _on_timer_timeout() -> void:
 func _spawn_mob():
 	var new_mob = preload("res://characters/mob/mob.tscn").instantiate()
 	new_mob.global_position = %SpawnPoint.global_position
+	new_mob.set_letter("C")
 	Globals.CatGame.add_child(new_mob)
