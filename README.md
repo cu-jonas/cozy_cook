@@ -38,6 +38,7 @@ This is Cozy Cook! A game I started to learn GoDot and as an example for teachin
 ## Assignment 6
 9/29 - Made aspect ratio scaling - 15 Minutes.  
 9/29 - Added Pause Menu - 30 Minutes.  
+9/29 - Added mobile joystick using plugin and UI pause button = 15 Minutes.  
 
 
 ## Assets
