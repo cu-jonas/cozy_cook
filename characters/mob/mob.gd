@@ -3,7 +3,8 @@ class_name Mob
 
 @onready var player = get_node("/root/Main/Game/CatPlayer")
 @export var GlyphyLetter := "0"
-@export var health = 100
+@export var health := 100
+@export var speed := 150
 
 signal mob_defeated
 
@@ -20,16 +21,15 @@ func _init() -> void:
 	# register the defeated with the game
 	mob_defeated.connect(Globals.CatGame.mob_killed)
 
-
-
 func set_letter(letter: String):
 	%Glyphy.set_letter(letter)
 
-func _physics_process(_delta: float):
+func _physics_process(delta: float):
 	if player:
 		var direction = global_position.direction_to(player.global_position)
-		velocity = direction * 150.0
-		move_and_slide()
+		velocity = direction * speed
+		#move_and_slide()
+		var collision = move_and_collide(velocity * delta)
 
 func take_damage(damage: float):
 	health -= damage

@@ -27,8 +27,11 @@ func _physics_process(delta: float):
 	%AnimatedCat.play_animation(velocity)
 
 	var overlapping_mobs = %HurtBox.get_overlapping_bodies()
+	
 	const DAMAGE_RATE = 50.0
-	health -= overlapping_mobs.size() * DAMAGE_RATE * delta
+	for mob in overlapping_mobs:
+		if mob.is_in_group("Enemies"):
+			health -=  DAMAGE_RATE * delta
 	
 	if overlapping_mobs.size() > 0:
 		%AnimationPlayer.play("hit_flash")

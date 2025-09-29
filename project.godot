@@ -108,6 +108,10 @@ folder_colors={
 "res://builds/": "red"
 }
 
+[global_group]
+
+Enemies=""
+
 [gui]
 
 theme/custom="uid://ds21fnoaxeym8"

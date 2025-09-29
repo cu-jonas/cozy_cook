@@ -194,36 +194,36 @@ texture = SubResource("GradientTexture2D_og54w")
 [node name="Enemies" type="Node2D" parent="LevelScale/Objects"]
 scale = Vector2(0.2, 0.2)
 
-[node name="Node2D" type="Node2D" parent="LevelScale/Objects/Enemies"]
-scale = Vector2(2, 2)
+[node name="HelloEnemies" type="Node2D" parent="LevelScale/Objects/Enemies"]
+scale = Vector2(1.5, 1.5)
 
-[node name="H" parent="LevelScale/Objects/Enemies/Node2D" instance=ExtResource("5_wevw2")]
+[node name="H" parent="LevelScale/Objects/Enemies/HelloEnemies" instance=ExtResource("5_wevw2")]
 modulate = Color(0.249063, 0.787561, 0.758907, 1)
-position = Vector2(92, 564)
+position = Vector2(165.333, 768)
 GlyphyLetter = "H"
 health = 400
 
-[node name="E" parent="LevelScale/Objects/Enemies/Node2D" instance=ExtResource("5_wevw2")]
+[node name="E" parent="LevelScale/Objects/Enemies/HelloEnemies" instance=ExtResource("5_wevw2")]
 modulate = Color(0.595482, 0.192991, 0.624742, 1)
-position = Vector2(148, 580)
+position = Vector2(221.333, 784)
 GlyphyLetter = "E"
 health = 400
 
-[node name="L" parent="LevelScale/Objects/Enemies/Node2D" instance=ExtResource("5_wevw2")]
+[node name="L" parent="LevelScale/Objects/Enemies/HelloEnemies" instance=ExtResource("5_wevw2")]
 modulate = Color(0.354656, 0.265926, 0.86926, 1)
-position = Vector2(200, 584)
+position = Vector2(273.333, 788)
 GlyphyLetter = "L"
 health = 400
 
-[node name="L2" parent="LevelScale/Objects/Enemies/Node2D" instance=ExtResource("5_wevw2")]
+[node name="L2" parent="LevelScale/Objects/Enemies/HelloEnemies" instance=ExtResource("5_wevw2")]
 modulate = Color(0.618635, 0.641505, 0.156005, 1)
-position = Vector2(256, 580)
+position = Vector2(329.333, 784)
 GlyphyLetter = "L"
 health = 400
 
-[node name="O" parent="LevelScale/Objects/Enemies/Node2D" instance=ExtResource("5_wevw2")]
+[node name="O" parent="LevelScale/Objects/Enemies/HelloEnemies" instance=ExtResource("5_wevw2")]
 modulate = Color(0.0742017, 0.480516, 0.183161, 1)
-position = Vector2(316, 576)
+position = Vector2(389.333, 780)
 GlyphyLetter = "O"
 health = 400
 
