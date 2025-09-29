@@ -83,6 +83,8 @@ rotation = -0.055421
 wait_time = 0.5
 autostart = true
 
+[node name="TouchControls" parent="." instance=ExtResource("7_y36n6")]
+
 [node name="PlayerHUD" type="CanvasLayer" parent="."]
 
 [node name="PlayerLevel" type="Control" parent="PlayerHUD"]
@@ -160,7 +162,20 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("5_7jktm")
 
-[node name="TouchControls" parent="." instance=ExtResource("7_y36n6")]
+[node name="PauseButton" type="Control" parent="PlayerHUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 60.0
+
+[node name="Button" type="Button" parent="PlayerHUD/PauseButton"]
+layout_mode = 0
+offset_right = 104.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 48
+text = "||"
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -233,6 +248,7 @@ layout_mode = 2
 [connection signal="xp_earned" from="CatPlayer" to="." method="_on_cat_player_xp_earned"]
 [connection signal="timeout" from="Timer" to="." method="spawn_mob"]
 [connection signal="word_completed" from="PlayerHUD/BottomObjective/PanelContainer/GoalWord" to="." method="_on_goal_world_word_completed"]
+[connection signal="pressed" from="PlayerHUD/PauseButton/Button" to="PauseMenu" method="_toggle_pause"]
 [connection signal="game_paused" from="PauseMenu" to="." method="_on_pause_menu_game_paused"]
 [connection signal="game_quit" from="PauseMenu" to="." method="_on_pause_menu_game_quit"]
 [connection signal="game_resumed" from="PauseMenu" to="." method="_on_pause_menu_game_resumed"]
