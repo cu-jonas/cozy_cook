@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://sixfqsom77do"]
+[gd_scene load_steps=12 format=3 uid="uid://sixfqsom77do"]
 
 [ext_resource type="Script" uid="uid://dmnpsxvjpg7lh" path="res://game/game.gd" id="1_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://xwqhwh8tyog6" path="res://characters/player_cat/player_cat.tscn" id="2_fc0e3"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://bmfccjxytgkd6" path="res://characters/glyphy/sixtyfour.ttf" id="4_fc0e3"]
 [ext_resource type="Script" uid="uid://cogj2j2ytmac8" path="res://game/goal_world.gd" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://cok7j5tbs3gmd" path="res://environment/camera_2d.gd" id="7_eow3j"]
+[ext_resource type="Script" uid="uid://cwykmc6pbjwh1" path="res://game/pause_menu.gd" id="7_u5opy"]
 
 [sub_resource type="Gradient" id="Gradient_7jktm"]
 interpolation_mode = 2
@@ -158,8 +159,78 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("5_7jktm")
 
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("7_u5opy")
+
+[node name="PauseControl" type="Control" parent="PauseMenu"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu/PauseControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.768627)
+
+[node name="PanelContainer" type="PanelContainer" parent="PauseMenu/PauseControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -10.0
+offset_right = 90.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/PauseControl/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="PauseMenu/PauseControl/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "GAME PAUSED"
+
+[node name="HSeparator" type="HSeparator" parent="PauseMenu/PauseControl/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="PauseMenu/PauseControl/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "QUIT GAME"
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/PauseControl/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "RESUME GAME"
+
+[node name="HSeparator2" type="HSeparator" parent="PauseMenu/PauseControl/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
 [connection signal="health_depleted" from="CatPlayer" to="." method="_on_player_health_depleted"]
 [connection signal="level_up" from="CatPlayer" to="." method="_on_cat_player_level_up"]
 [connection signal="xp_earned" from="CatPlayer" to="." method="_on_cat_player_xp_earned"]
 [connection signal="timeout" from="Timer" to="." method="spawn_mob"]
 [connection signal="word_completed" from="PlayerHUD/BottomObjective/PanelContainer/GoalWord" to="." method="_on_goal_world_word_completed"]
+[connection signal="game_paused" from="PauseMenu" to="." method="_on_pause_menu_game_paused"]
+[connection signal="game_quit" from="PauseMenu" to="." method="_on_pause_menu_game_quit"]
+[connection signal="game_resumed" from="PauseMenu" to="." method="_on_pause_menu_game_resumed"]
+[connection signal="pressed" from="PauseMenu/PauseControl/PanelContainer/VBoxContainer/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="PauseMenu/PauseControl/PanelContainer/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]

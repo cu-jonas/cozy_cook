@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://4imwjmbgpuwh"]
+[gd_scene load_steps=9 format=3 uid="uid://4imwjmbgpuwh"]
 
 [ext_resource type="Script" uid="uid://bc15pl5k0b5t8" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://sixfqsom77do" path="res://game/game.tscn" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://wlbes1ulnqnp" path="res://assets/items-spritesheet.png" id="3_1bvp3"]
 [ext_resource type="FontFile" uid="uid://bmfccjxytgkd6" path="res://characters/glyphy/sixtyfour.ttf" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://bgd0tuofscsbd" path="res://main_menu.gd" id="5_lquwl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lquwl"]
 atlas = ExtResource("3_1bvp3")
@@ -169,6 +170,11 @@ theme_override_font_sizes/font_size = 32
 action_mode = 0
 text = "Start Over"
 
+[node name="MainMenu" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("5_lquwl")
+
+[connection signal="game_quit" from="Game" to="." method="_on_game_game_quit"]
 [connection signal="level_fail" from="Game" to="." method="_on_game_level_fail"]
 [connection signal="level_won" from="Game" to="." method="_on_game_level_won"]
 [connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/RetryLevelButton" to="." method="_on_retry_level_button_pressed"]

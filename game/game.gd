@@ -3,6 +3,7 @@ class_name Game
 
 signal level_fail
 signal level_won
+signal game_quit
 
 # debug: everything unlocked!
 #var unlocked_words : Array = [ 'SOUP']
@@ -64,3 +65,16 @@ func _on_cat_player_xp_earned() -> void:
 func _on_goal_world_word_completed() -> void:
 	unlocked_words.append(current_word)
 	level_won.emit()
+
+
+func _on_pause_menu_game_paused() -> void:
+	$PlayerHUD.visible = false
+
+
+func _on_pause_menu_game_resumed() -> void:
+	$PlayerHUD.visible = true
+
+
+func _on_pause_menu_game_quit() -> void:
+	reset_game()
+	game_quit.emit()

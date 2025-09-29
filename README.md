@@ -35,6 +35,11 @@ This is Cozy Cook! A game I started to learn GoDot and as an example for teachin
 9/22 - Made enemy trigger spawner - 30 minutes
 9/24 - Made Glyphys have letter assignments - 30 minutes
 
+## Assignment 6
+9/29 - Made aspect ratio scaling - 15 Minutes.  
+9/29 - Added Pause Menu - 30 Minutes.  
+
+
 ## Assets
 - GDQuest Tutorial - https://www.gdquest.com/library/first_2d_game_godot4_vampire_survivor/
 - Sprout Lands -By : Cup Nooble - https://cupnooble.itch.io/
