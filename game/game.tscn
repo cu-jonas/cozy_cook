@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://sixfqsom77do"]
+[gd_scene load_steps=13 format=3 uid="uid://sixfqsom77do"]
 
 [ext_resource type="Script" uid="uid://dmnpsxvjpg7lh" path="res://game/game.gd" id="1_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://xwqhwh8tyog6" path="res://characters/player_cat/player_cat.tscn" id="2_fc0e3"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cogj2j2ytmac8" path="res://game/goal_world.gd" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://cok7j5tbs3gmd" path="res://environment/camera_2d.gd" id="7_eow3j"]
 [ext_resource type="Script" uid="uid://cwykmc6pbjwh1" path="res://game/pause_menu.gd" id="7_u5opy"]
+[ext_resource type="PackedScene" uid="uid://blllaffdwbqvd" path="res://addons/joystick_addon/touch_controls.tscn" id="7_y36n6"]
 
 [sub_resource type="Gradient" id="Gradient_7jktm"]
 interpolation_mode = 2
@@ -159,12 +160,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("5_7jktm")
 
+[node name="TouchControls" parent="." instance=ExtResource("7_y36n6")]
+
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 process_mode = 3
 script = ExtResource("7_u5opy")
 
 [node name="PauseControl" type="Control" parent="PauseMenu"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
