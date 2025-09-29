@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://sixfqsom77do"]
+[gd_scene load_steps=14 format=3 uid="uid://sixfqsom77do"]
 
 [ext_resource type="Script" uid="uid://dmnpsxvjpg7lh" path="res://game/game.gd" id="1_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://xwqhwh8tyog6" path="res://characters/player_cat/player_cat.tscn" id="2_fc0e3"]
@@ -48,6 +48,12 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -1016, -598, 0, 0, 0, 0, 1129, -717, 0, 0, 0, 0, 1162, 824, 0, 0, 0, 0, -1050, 716, 0, 0, 0, 0, -1016, -598)
 }
 point_count = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y36n6"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
 
 [node name="Game" type="Node2D"]
 modulate = Color(0.266575, 0.266575, 0.266575, 1)
@@ -183,7 +189,6 @@ script = ExtResource("7_u5opy")
 
 [node name="PauseControl" type="Control" parent="PauseMenu"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -221,27 +226,27 @@ layout_mode = 2
 theme_override_constants/separation = 32
 
 [node name="Label" type="Label" parent="PauseMenu/PauseControl/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
 theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxEmpty_y36n6")
 text = "GAME PAUSED"
-
-[node name="HSeparator" type="HSeparator" parent="PauseMenu/PauseControl/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="QuitButton" type="Button" parent="PauseMenu/PauseControl/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "QUIT GAME"
 
 [node name="ResumeButton" type="Button" parent="PauseMenu/PauseControl/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "RESUME GAME"
-
-[node name="HSeparator2" type="HSeparator" parent="PauseMenu/PauseControl/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
 
 [connection signal="health_depleted" from="CatPlayer" to="." method="_on_player_health_depleted"]
 [connection signal="level_up" from="CatPlayer" to="." method="_on_cat_player_level_up"]
