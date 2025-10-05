@@ -64,7 +64,7 @@ jobs:
       run: |
         mkdir -p builds/web
         ~/godot/Godot_v${GODOT_VERSION}_linux.x86_64 --headless \
-          --export-release "${WEB_PRESET}" build/web/index.html
+          --export-release "${WEB_PRESET}" builds/web/index.html
 
     # — upload artifact for Pages —
     - uses: actions/upload-pages-artifact@v3
