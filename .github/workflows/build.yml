@@ -15,6 +15,11 @@ env:
   GODOT_BASE_URL: "https://github.com/godotengine/godot/releases/download"
   WEB_PRESET:     "Web"
 
+  ITCHIO_USERNAME: "jonaswills"
+  ITCHIO_GAME: "cozy-cook"
+  WINDOWS_PRESET: "Windows"  
+
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -57,14 +62,56 @@ jobs:
     # — export HTML5 —
     - name: Export HTML5
       run: |
-        mkdir -p build/web
+        mkdir -p builds/web
         ~/godot/Godot_v${GODOT_VERSION}_linux.x86_64 --headless \
           --export-release "${WEB_PRESET}" build/web/index.html
 
     # — upload artifact for Pages —
     - uses: actions/upload-pages-artifact@v3
       with:
-        path: build/web        # this becomes the Pages content
+        path: builds/web        # this becomes the Pages content
+
+
+    - name: Export Windows (Release)
+      run: |
+        mkdir -p "builds/windows"
+        ~/godot/Godot_v${GODOT_VERSION}_linux.x86_64 --verbose --headless \
+          --export-release "${WINDOWS_PRESET}" "builds/windows/CozyCook.exe"
+
+
+    - name: Zip Windows build
+      run: |
+        cd "builds/windows"
+        zip -r ../cozy_cook_windows.zip .
+        cd -          
+
+    - name: Install butler
+      run: |
+        curl -L https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default > butler.zip
+        unzip -oq butler.zip -d $HOME/.local/bin
+        chmod +x $HOME/.local/bin/butler
+
+
+    - name: Compute version label
+      id: ver
+      shell: bash
+      run: |
+        if [ -f VERSION.txt ]; then
+          echo "v=$(cat VERSION.txt)" >> $GITHUB_OUTPUT
+        else
+          # strip leading 'refs/tags/' and use the tag (v1.2.3)
+          echo "v=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
+        fi
+
+    - name: "Push to itch.io (channel: windows)"
+      env:
+        BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+      run: |
+        $HOME/.local/bin/butler push buicozy_cook_windowsows.zip \
+          "${ITCHIO_USERNAME}/${ITCHIO_GAME}:windows" \
+          --userversion "${{ steps.ver.outputs.v }}"
+
+
 
   # ───────────────── deploy job ─────────────────
   deploy:
