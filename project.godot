@@ -75,9 +75,10 @@ Settings/Show_Tooltips=true
 [application]
 
 config/name="Cozy Cook"
+config/version="0.1.0"
 run/main_scene="uid://4imwjmbgpuwh"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://assets/icon.png"
+config/icon="uid://i4cjdwy1kcoj"
 
 [audio]
 
