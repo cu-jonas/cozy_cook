@@ -112,6 +112,30 @@ jobs:
           --userversion "${{ steps.ver.outputs.v }}"
 
 
+    # — export macOS —
+    - name: Export macOS (Release)
+      env:
+        MAC_PRESET: "macOS"               # or "macOS (Universal)" if that's your preset name
+      run: |
+        mkdir -p "builds/macos"
+        ~/godot/Godot_v${GODOT_VERSION}_linux.x86_64 --verbose --headless \
+          --export-release "${MAC_PRESET}" "builds/macos/Cozy Cook.app"
+
+    - name: Zip macOS build
+      run: |
+        cd "builds/macos"
+        # Zip the .app bundle so butler uploads a single archive
+        zip -r ../cozy_cook_macos.zip "Cozy Cook.app"
+        cd -
+
+    - name: "Push to itch.io (channel: macos)"
+      env:
+        BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+      run: |
+        $HOME/.local/bin/butler push builds/cozy_cook_macos.zip \
+          "${ITCHIO_USERNAME}/${ITCHIO_GAME}:macos" \
+          --userversion "${{ steps.ver.outputs.v }}"
+
 
   # ───────────────── deploy job ─────────────────
   deploy:
