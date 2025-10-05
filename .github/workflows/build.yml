@@ -1,151 +1,170 @@
-name: Build - Web
+name: Build (Web) + Publish (itch)
 
 on:
   push:
-    branches: [main]      # deploy on main
-    tags:     ["v*"]      # …and version tags
-    
-permissions:              # required for deploy-pages
+    branches: [main]         # build on main
+    tags:     ["v*"]         # and version tags
+  workflow_dispatch:
+
+permissions:
   contents: read
-  pages: write
-  id-token: write
+  pages: write     # only used in deploy job
+  id-token: write  # only used in deploy job
 
 env:
   GODOT_VERSION:  "4.4.1-stable"
   GODOT_BASE_URL: "https://github.com/godotengine/godot/releases/download"
-  WEB_PRESET:     "Web"
+
+  WEB_PRESET:      "Web"
+  WINDOWS_PRESET:  "Windows"
+  MAC_PRESET:      "macOS"   # change if your preset is "macOS (Universal)"
 
   ITCHIO_USERNAME: "jonaswills"
-  ITCHIO_GAME: "cozy-cook"
-  WINDOWS_PRESET: "Windows"  
-
+  ITCHIO_GAME:     "cozy-cook"
 
 jobs:
+  # ─────────────────────────── BUILD ───────────────────────────
   build:
     runs-on: ubuntu-latest
-
+    outputs:
+      ver: ${{ steps.ver.outputs.v }}
     steps:
-    # — checkout —
-    - uses: actions/checkout@v4
-      with: {submodules: recursive}
+      - uses: actions/checkout@v4
+        with: { submodules: recursive }
 
-    # — cache godot —
-    - name: Cache Godot
-      id: godot-cache
-      uses: actions/cache@v4
-      with:
-        path: |
-          ~/godot
-          ~/.local/share/godot/export_templates
-        key: godot-${{ runner.os }}-${{ env.GODOT_VERSION }}-v5
+      # Cache editor + export templates
+      - name: Cache Godot
+        id: godot-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/godot
+            ~/.local/share/godot/export_templates
+          key: godot-${{ runner.os }}-${{ env.GODOT_VERSION }}-v5
 
-    # — download editor & templates if cache missed —
-    - name: Install Godot desktop + templates
-      if: steps.godot-cache.outputs.cache-hit != 'true'
-      shell: bash
-      run: |
-        set -e
-        base="${GODOT_BASE_URL}/${GODOT_VERSION}"
-        echo "⬇️  $base/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
-        wget -q $base/Godot_v${GODOT_VERSION}_linux.x86_64.zip -O godot.zip
-        unzip -q godot.zip -d ~/godot
-        chmod +x ~/godot/Godot_v${GODOT_VERSION}_linux.x86_64
+      - name: Install Godot editor + templates (if cache missed)
+        if: steps.godot-cache.outputs.cache-hit != 'true'
+        shell: bash
+        run: |
+          set -e
+          base="${GODOT_BASE_URL}/${GODOT_VERSION}"
+          echo "⬇️  $base/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          wget -q "$base/Godot_v${GODOT_VERSION}_linux.x86_64.zip" -O godot.zip
+          unzip -q godot.zip -d ~/godot
+          chmod +x ~/godot/Godot_v${GODOT_VERSION}_linux.x86_64
 
-        echo "⬇️  $base/Godot_v${GODOT_VERSION}_export_templates.tpz"
-        wget -q $base/Godot_v${GODOT_VERSION}_export_templates.tpz -O templates.tpz
-        mkdir -p /tmp/tpl && unzip -q templates.tpz -d /tmp/tpl
-        for F in /tmp/tpl/templates/*; do
+          echo "⬇️  $base/Godot_v${GODOT_VERSION}_export_templates.tpz"
+          wget -q "$base/Godot_v${GODOT_VERSION}_export_templates.tpz" -O templates.tpz
+          mkdir -p /tmp/tpl && unzip -q templates.tpz -d /tmp/tpl
+          # NOTE: this folder must match Godot's template dir name for your version
           mkdir -p ~/.local/share/godot/export_templates/4.4.1.stable
-          cp "$F"   ~/.local/share/godot/export_templates/4.4.1.stable/
-        done
+          cp /tmp/tpl/templates/* ~/.local/share/godot/export_templates/4.4.1.stable/
 
-    # — export HTML5 —
-    - name: Export HTML5
-      run: |
-        mkdir -p builds/web
-        ~/godot/Godot_v${GODOT_VERSION}_linux.x86_64 --headless \
-          --export-release "${WEB_PRESET}" builds/web/index.html
+      # Compute version label once (tag or VERSION.txt)
+      - name: Compute version label
+        id: ver
+        shell: bash
+        run: |
+          if [ -f VERSION.txt ]; then
+            echo "v=$(cat VERSION.txt)" >> $GITHUB_OUTPUT
+          else
+            echo "v=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
+          fi
 
-    # — upload artifact for Pages —
-    - uses: actions/upload-pages-artifact@v3
-      with:
-        path: builds/web        # this becomes the Pages content
+      # ── Export Web (for Pages) ──
+      - name: Export HTML5
+        run: |
+          mkdir -p builds/web
+          ~/godot/Godot_v${GODOT_VERSION}_linux.x86_64 --headless \
+            --export-release "${WEB_PRESET}" builds/web/index.html
 
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: builds/web
 
-    - name: Export Windows (Release)
-      run: |
-        mkdir -p "builds/windows"
-        ~/godot/Godot_v${GODOT_VERSION}_linux.x86_64 --verbose --headless \
-          --export-release "${WINDOWS_PRESET}" "builds/windows/CozyCook.exe"
+      # ── Export Windows ──
+      - name: Export Windows (Release)
+        run: |
+          mkdir -p "builds/windows"
+          ~/godot/Godot_v${GODOT_VERSION}_linux.x86_64 --verbose --headless \
+            --export-release "${WINDOWS_PRESET}" "builds/windows/CozyCook.exe"
 
+      - name: Zip Windows build
+        run: |
+          cd "builds/windows"
+          zip -r ../cozy_cook_windows.zip .
+          cd -
 
-    - name: Zip Windows build
-      run: |
-        cd "builds/windows"
-        zip -r ../cozy_cook_windows.zip .
-        cd -          
+      - name: Upload Windows artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: win-zip
+          path: builds/cozy_cook_windows.zip
+          if-no-files-found: error
+          retention-days: 7
 
-    - name: Install butler
-      run: |
-        curl -L https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default > butler.zip
-        unzip -oq butler.zip -d $HOME/.local/bin
-        chmod +x $HOME/.local/bin/butler
+      # ── Export macOS ──
+      - name: Export macOS (Release)
+        run: |
+          mkdir -p "builds/macos"
+          ~/godot/Godot_v${GODOT_VERSION}_linux.x86_64 --verbose --headless \
+            --export-release "${MAC_PRESET}" "builds/macos/Cozy Cook.app"
 
+      - name: Zip macOS build
+        run: |
+          cd "builds/macos"
+          zip -r ../cozy_cook_macos.zip "Cozy Cook.app"
+          cd -
 
-    - name: Compute version label
-      id: ver
-      shell: bash
-      run: |
-        if [ -f VERSION.txt ]; then
-          echo "v=$(cat VERSION.txt)" >> $GITHUB_OUTPUT
-        else
-          # strip leading 'refs/tags/' and use the tag (v1.2.3)
-          echo "v=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
-        fi
+      - name: Upload macOS artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mac-zip
+          path: builds/cozy_cook_macos.zip
+          if-no-files-found: error
+          retention-days: 7
 
-    - name: "Push to itch.io (channel: windows)"
-      env:
-        BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
-      run: |
-        $HOME/.local/bin/butler push builds/cozy_cook_windows.zip \
-          "${ITCHIO_USERNAME}/${ITCHIO_GAME}:windows" \
-          --userversion "${{ steps.ver.outputs.v }}"
-
-
-    # — export macOS —
-    - name: Export macOS (Release)
-      env:
-        MAC_PRESET: "macOS"               # or "macOS (Universal)" if that's your preset name
-      run: |
-        mkdir -p "builds/macos"
-        ~/godot/Godot_v${GODOT_VERSION}_linux.x86_64 --verbose --headless \
-          --export-release "${MAC_PRESET}" "builds/macos/Cozy Cook.app"
-
-    - name: Zip macOS build
-      run: |
-        cd "builds/macos"
-        # Zip the .app bundle so butler uploads a single archive
-        zip -r ../cozy_cook_macos.zip "Cozy Cook.app"
-        cd -
-
-    - name: "Push to itch.io (channel: macos)"
-      env:
-        BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
-      run: |
-        $HOME/.local/bin/butler push builds/cozy_cook_macos.zip \
-          "${ITCHIO_USERNAME}/${ITCHIO_GAME}:macos" \
-          --userversion "${{ steps.ver.outputs.v }}"
-
-
-  # ───────────────── deploy job ─────────────────
+  # ─────────────────────────── DEPLOY PAGES ───────────────────────────
   deploy:
     needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  # ─────────────────────────── PUBLISH ITCH ───────────────────────────
+  publish-itch:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Windows artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: win-zip
+          path: .
+      - name: Download macOS artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: mac-zip
+          path: .
+
+      - name: Install butler
+        run: |
+          curl -L https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default > butler.zip
+          unzip -oq butler.zip -d $HOME/.local/bin
+          chmod +x $HOME/.local/bin/butler
+
+      - name: Push to itch.io
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+          V: ${{ needs.build.outputs.ver }}
+        run: |
+          $HOME/.local/bin/butler push cozy_cook_windows.zip \
+            "${ITCHIO_USERNAME}/${ITCHIO_GAME}:windows" --userversion "$V"
+          $HOME/.local/bin/butler push cozy_cook_macos.zip \
+            "${ITCHIO_USERNAME}/${ITCHIO_GAME}:macos"   --userversion "$V"
