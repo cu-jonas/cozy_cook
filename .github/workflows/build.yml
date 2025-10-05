@@ -107,7 +107,7 @@ jobs:
       env:
         BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
       run: |
-        $HOME/.local/bin/butler push buicozy_cook_windowsows.zip \
+        $HOME/.local/bin/butler push builds/cozy_cook_windows.zip \
           "${ITCHIO_USERNAME}/${ITCHIO_GAME}:windows" \
           --userversion "${{ steps.ver.outputs.v }}"
 
