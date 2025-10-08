@@ -41,6 +41,9 @@ This is Cozy Cook! A game I started to learn GoDot and as an example for teachin
 9/29 - Added mobile joystick using plugin and UI pause button = 15 Minutes.  
 
 
+## Assignment 7
+10/8 - Added CI For Butler - 15 Minutes
+
 ## Assets
 - GDQuest Tutorial - https://www.gdquest.com/library/first_2d_game_godot4_vampire_survivor/
 - Sprout Lands -By : Cup Nooble - https://cupnooble.itch.io/
