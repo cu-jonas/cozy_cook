@@ -2,34 +2,19 @@ extends CharacterBody2D
 class_name Mob
 
 @onready var player = get_node("/root/Main/Game/CatPlayer")
-@export var GlyphyLetter := "0"
-@export var health := 100
-@export var speed := 150
+
+var health = 100
 
 signal mob_defeated
 
 func _ready():
 	%Glyphy.play_walk()
-	
-	if GlyphyLetter != "0":
-		set_letter(GlyphyLetter)
-	
-	print('spawning mob')
-	
 
-func _init() -> void:
-	# register the defeated with the game
-	mob_defeated.connect(Globals.CatGame.mob_killed)
-
-func set_letter(letter: String):
-	%Glyphy.set_letter(letter)
-
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 	if player:
 		var direction = global_position.direction_to(player.global_position)
-		velocity = direction * speed
-		#move_and_slide()
-		var collision = move_and_collide(velocity * delta)
+		velocity = direction * 150.0
+		move_and_slide()
 
 func take_damage(damage: float):
 	health -= damage

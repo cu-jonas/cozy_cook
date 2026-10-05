@@ -63,5 +63,3 @@ func _on_game_level_won() -> void:
 		%GameWon.visible = true
 		
 	
-func _on_game_game_quit() -> void:
-	_on_restart_game_button_pressed()

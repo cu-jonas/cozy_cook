@@ -1,14 +1,9 @@
 extends Node2D
-class_name Glyphy
 
 var letter : String
 
 func _ready() -> void:
-	#set_letter(char(randi_range(65, 90)))  # ASCII codes 65-90 inclusive
-	pass
-	
-func set_letter(new_letter: String):
-	letter = new_letter
+	letter = char(randi_range(65, 90))  # ASCII codes 65-90 inclusive
 	%Label.text = letter
 
 func play_walk():
