@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://4imwjmbgpuwh"]
+[gd_scene format=3 uid="uid://4imwjmbgpuwh"]
 
 [ext_resource type="Script" uid="uid://bc15pl5k0b5t8" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://sixfqsom77do" path="res://game/game.tscn" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://wlbes1ulnqnp" path="res://assets/items-spritesheet.png" id="3_1bvp3"]
 [ext_resource type="FontFile" uid="uid://bmfccjxytgkd6" path="res://characters/glyphy/sixtyfour.ttf" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://bgd0tuofscsbd" path="res://main_menu.gd" id="5_lquwl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lquwl"]
 atlas = ExtResource("3_1bvp3")
@@ -17,17 +18,17 @@ region = Rect2(16, 32, 16, 16)
 atlas = ExtResource("3_1bvp3")
 region = Rect2(16, 144, 16, 16)
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=2042040183]
 script = ExtResource("1_0xm2m")
 
-[node name="Game" parent="." instance=ExtResource("2_h2yge")]
+[node name="Game" parent="." unique_id=981221485 instance=ExtResource("2_h2yge")]
 unique_name_in_owner = true
 
-[node name="GameOver" type="CanvasLayer" parent="."]
+[node name="GameOver" type="CanvasLayer" parent="." unique_id=1504858474]
 unique_name_in_owner = true
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="GameOver"]
+[node name="ColorRect" type="ColorRect" parent="GameOver" unique_id=1417199089]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -35,7 +36,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.513726, 0.00392157, 0.0235294, 0.764706)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/ColorRect"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/ColorRect" unique_id=582368300]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -49,12 +50,12 @@ offset_bottom = 109.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label2" type="Label" parent="GameOver/ColorRect/VBoxContainer"]
+[node name="Label2" type="Label" parent="GameOver/ColorRect/VBoxContainer" unique_id=1373763285]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "LEVEL FAILED :-("
 
-[node name="RetryLevelButton" type="Button" parent="GameOver/ColorRect/VBoxContainer"]
+[node name="RetryLevelButton" type="Button" parent="GameOver/ColorRect/VBoxContainer" unique_id=1460860267]
 process_mode = 3
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_h2yge")
@@ -62,10 +63,10 @@ theme_override_font_sizes/font_size = 32
 action_mode = 0
 text = "Retry Level"
 
-[node name="LevelComplete" type="CanvasLayer" parent="."]
+[node name="LevelComplete" type="CanvasLayer" parent="." unique_id=1086311870]
 unique_name_in_owner = true
 
-[node name="ColorRect" type="ColorRect" parent="LevelComplete"]
+[node name="ColorRect" type="ColorRect" parent="LevelComplete" unique_id=927067978]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -73,7 +74,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.158017, 0.212388, 0.574148, 0.764706)
 
-[node name="PanelContainer" type="PanelContainer" parent="LevelComplete/ColorRect"]
+[node name="PanelContainer" type="PanelContainer" parent="LevelComplete/ColorRect" unique_id=1449668501]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -87,16 +88,16 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LevelComplete/ColorRect/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelComplete/ColorRect/PanelContainer" unique_id=1691683286]
 layout_mode = 2
 
-[node name="CompletedLabel" type="Label" parent="LevelComplete/ColorRect/PanelContainer/VBoxContainer"]
+[node name="CompletedLabel" type="Label" parent="LevelComplete/ColorRect/PanelContainer/VBoxContainer" unique_id=407160386]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Completed Recipe"
 
-[node name="SoupImage" type="TextureRect" parent="LevelComplete/ColorRect/PanelContainer/VBoxContainer"]
+[node name="SoupImage" type="TextureRect" parent="LevelComplete/ColorRect/PanelContainer/VBoxContainer" unique_id=1168060773]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(100, 100)
@@ -104,7 +105,7 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_lquwl")
 stretch_mode = 5
 
-[node name="CarrotImage" type="TextureRect" parent="LevelComplete/ColorRect/PanelContainer/VBoxContainer"]
+[node name="CarrotImage" type="TextureRect" parent="LevelComplete/ColorRect/PanelContainer/VBoxContainer" unique_id=1651135469]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(100, 100)
@@ -112,7 +113,7 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_7mycd")
 stretch_mode = 5
 
-[node name="PumpkinImage" type="TextureRect" parent="LevelComplete/ColorRect/PanelContainer/VBoxContainer"]
+[node name="PumpkinImage" type="TextureRect" parent="LevelComplete/ColorRect/PanelContainer/VBoxContainer" unique_id=558893530]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(100, 100)
@@ -120,7 +121,7 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_272bh")
 stretch_mode = 5
 
-[node name="NextLevelButton" type="Button" parent="LevelComplete/ColorRect/PanelContainer/VBoxContainer"]
+[node name="NextLevelButton" type="Button" parent="LevelComplete/ColorRect/PanelContainer/VBoxContainer" unique_id=449134075]
 process_mode = 3
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_h2yge")
@@ -128,10 +129,10 @@ theme_override_font_sizes/font_size = 32
 action_mode = 0
 text = "Next Stage"
 
-[node name="GameWon" type="CanvasLayer" parent="."]
+[node name="GameWon" type="CanvasLayer" parent="." unique_id=308996188]
 unique_name_in_owner = true
 
-[node name="ColorRect" type="ColorRect" parent="GameWon"]
+[node name="ColorRect" type="ColorRect" parent="GameWon" unique_id=1916909948]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -139,7 +140,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.318509, 0.190841, 0.764706)
 
-[node name="PanelContainer" type="PanelContainer" parent="GameWon/ColorRect"]
+[node name="PanelContainer" type="PanelContainer" parent="GameWon/ColorRect" unique_id=1592880901]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -153,15 +154,15 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GameWon/ColorRect/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameWon/ColorRect/PanelContainer" unique_id=1696580163]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="GameWon/ColorRect/PanelContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="GameWon/ColorRect/PanelContainer/VBoxContainer" unique_id=276513759]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "You Win! :-)"
 
-[node name="RestartGameButton" type="Button" parent="GameWon/ColorRect/PanelContainer/VBoxContainer"]
+[node name="RestartGameButton" type="Button" parent="GameWon/ColorRect/PanelContainer/VBoxContainer" unique_id=1555761837]
 process_mode = 3
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_h2yge")
@@ -169,6 +170,11 @@ theme_override_font_sizes/font_size = 32
 action_mode = 0
 text = "Start Over"
 
+[node name="MainMenu" type="CanvasLayer" parent="." unique_id=2081787710]
+visible = false
+script = ExtResource("5_lquwl")
+
+[connection signal="game_quit" from="Game" to="." method="_on_game_game_quit"]
 [connection signal="level_fail" from="Game" to="." method="_on_game_level_fail"]
 [connection signal="level_won" from="Game" to="." method="_on_game_level_won"]
 [connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/RetryLevelButton" to="." method="_on_retry_level_button_pressed"]

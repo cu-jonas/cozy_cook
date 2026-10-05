@@ -29,6 +29,21 @@ This is Cozy Cook! A game I started to learn GoDot and as an example for teachin
 9/14 - Added more audio polish and adjustments - 30 minutes  
 9/14 - Added particle effects to laser - 1 hour
 
+## Assignment 5
+9/21 - Added tilemaps and setup collision and terrain - 3 hours
+9/22 - Added gate with collision and terrains - 30 minutes
+9/22 - Made enemy trigger spawner - 30 minutes
+9/24 - Made Glyphys have letter assignments - 30 minutes
+
+## Assignment 6
+9/29 - Made aspect ratio scaling - 15 Minutes.  
+9/29 - Added Pause Menu - 30 Minutes.  
+9/29 - Added mobile joystick using plugin and UI pause button = 15 Minutes.  
+
+
+## Assignment 7
+10/8 - Added CI For Butler - 15 Minutes
+
 ## Assets
 - GDQuest Tutorial - https://www.gdquest.com/library/first_2d_game_godot4_vampire_survivor/
 - Sprout Lands -By : Cup Nooble - https://cupnooble.itch.io/

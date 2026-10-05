@@ -9,6 +9,9 @@ func _ready() -> void:
 	%AnimationPlayer.play("wobble")
 
 func _on_body_entered(body: Node2D) -> void:
+	if body is Player:
+		pass
+		
 	if body.has_method("collect_pickup"):
 		AudioManager.play_xp_sfx()
 		body.collect_pickup(pickup_type,pickup_value)

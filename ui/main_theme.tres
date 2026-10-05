@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://ds21fnoaxeym8"]
+[gd_resource type="Theme" format=3 uid="uid://ds21fnoaxeym8"]
 
 [ext_resource type="FontFile" uid="uid://bmfccjxytgkd6" path="res://characters/glyphy/sixtyfour.ttf" id="1_g1fjd"]
 
@@ -24,7 +24,7 @@ content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(0.870588, 0.313726, 0.168627, 1)
+bg_color = Color(0.4005878, 0.5120647, 0.8000825, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -42,6 +42,10 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tsbh2"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
 bg_color = Color(0.447286, 0.193226, 0.0132483, 1)
 border_width_left = 2
 border_width_top = 2

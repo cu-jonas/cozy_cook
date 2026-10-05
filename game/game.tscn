@@ -1,12 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://sixfqsom77do"]
+[gd_scene load_steps=14 format=3 uid="uid://sixfqsom77do"]
 
-[ext_resource type="Script" uid="uid://dmnpsxvjpg7lh" path="res://game.gd" id="1_fc0e3"]
-[ext_resource type="PackedScene" uid="uid://0rgoslwspiir" path="res://environment/trees/tree.tscn" id="2_e2o6t"]
+[ext_resource type="Script" uid="uid://dmnpsxvjpg7lh" path="res://game/game.gd" id="1_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://xwqhwh8tyog6" path="res://characters/player_cat/player_cat.tscn" id="2_fc0e3"]
-[ext_resource type="PackedScene" uid="uid://cwcv74fqln3cj" path="res://environment/green_forest.tscn" id="2_ryrav"]
+[ext_resource type="Script" uid="uid://fyqpsd4pt6sm" path="res://game/level_manager.gd" id="2_y36n6"]
 [ext_resource type="FontFile" uid="uid://bmfccjxytgkd6" path="res://characters/glyphy/sixtyfour.ttf" id="4_fc0e3"]
-[ext_resource type="Script" uid="uid://cogj2j2ytmac8" path="res://goal_world.gd" id="5_7jktm"]
+[ext_resource type="Script" uid="uid://cogj2j2ytmac8" path="res://game/goal_world.gd" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://cok7j5tbs3gmd" path="res://environment/camera_2d.gd" id="7_eow3j"]
+[ext_resource type="Script" uid="uid://cwykmc6pbjwh1" path="res://game/pause_menu.gd" id="7_u5opy"]
+[ext_resource type="PackedScene" uid="uid://blllaffdwbqvd" path="res://addons/joystick_addon/touch_controls.tscn" id="7_y36n6"]
 
 [sub_resource type="Gradient" id="Gradient_7jktm"]
 interpolation_mode = 2
@@ -48,6 +49,12 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y36n6"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+
 [node name="Game" type="Node2D"]
 modulate = Color(0.266575, 0.266575, 0.266575, 1)
 y_sort_enabled = true
@@ -56,7 +63,10 @@ script = ExtResource("1_fc0e3")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7jktm")
 
-[node name="TileMapLayer" parent="." instance=ExtResource("2_ryrav")]
+[node name="LevelManager" type="Node2D" parent="."]
+unique_name_in_owner = true
+z_index = -1
+script = ExtResource("2_y36n6")
 
 [node name="CatPlayer" parent="." instance=ExtResource("2_fc0e3")]
 unique_name_in_owner = true
@@ -75,21 +85,11 @@ unique_name_in_owner = true
 position = Vector2(-1016, -598)
 rotation = -0.055421
 
-[node name="Tree" parent="." instance=ExtResource("2_e2o6t")]
-position = Vector2(340, 287)
-
-[node name="Tree2" parent="." instance=ExtResource("2_e2o6t")]
-position = Vector2(1386, 225)
-
-[node name="Tree3" parent="." instance=ExtResource("2_e2o6t")]
-position = Vector2(520, 667)
-
-[node name="Tree4" parent="." instance=ExtResource("2_e2o6t")]
-position = Vector2(1348, 736)
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+
+[node name="TouchControls" parent="." instance=ExtResource("7_y36n6")]
 
 [node name="PlayerHUD" type="CanvasLayer" parent="."]
 
@@ -168,8 +168,94 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("5_7jktm")
 
+[node name="PauseButton" type="Control" parent="PlayerHUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 60.0
+
+[node name="Button" type="Button" parent="PlayerHUD/PauseButton"]
+layout_mode = 0
+offset_right = 104.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 48
+text = "||"
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("7_u5opy")
+
+[node name="PauseControl" type="Control" parent="PauseMenu"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu/PauseControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.768627)
+
+[node name="PanelContainer" type="PanelContainer" parent="PauseMenu/PauseControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -10.0
+offset_right = 90.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/PauseControl/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="PauseMenu/PauseControl/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxEmpty_y36n6")
+text = "GAME PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitButton" type="Button" parent="PauseMenu/PauseControl/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "QUIT GAME"
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/PauseControl/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "RESUME GAME"
+
 [connection signal="health_depleted" from="CatPlayer" to="." method="_on_player_health_depleted"]
 [connection signal="level_up" from="CatPlayer" to="." method="_on_cat_player_level_up"]
 [connection signal="xp_earned" from="CatPlayer" to="." method="_on_cat_player_xp_earned"]
 [connection signal="timeout" from="Timer" to="." method="spawn_mob"]
 [connection signal="word_completed" from="PlayerHUD/BottomObjective/PanelContainer/GoalWord" to="." method="_on_goal_world_word_completed"]
+[connection signal="pressed" from="PlayerHUD/PauseButton/Button" to="PauseMenu" method="_toggle_pause"]
+[connection signal="game_paused" from="PauseMenu" to="." method="_on_pause_menu_game_paused"]
+[connection signal="game_quit" from="PauseMenu" to="." method="_on_pause_menu_game_quit"]
+[connection signal="game_resumed" from="PauseMenu" to="." method="_on_pause_menu_game_resumed"]
+[connection signal="pressed" from="PauseMenu/PauseControl/PanelContainer/VBoxContainer/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="PauseMenu/PauseControl/PanelContainer/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
